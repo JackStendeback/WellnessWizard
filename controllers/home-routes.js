@@ -5,3 +5,4 @@ const authenticated = require('../utils/auth');
 // GET request for finding all
 
 // GET request for login
+module.exports = router;
