@@ -3,5 +3,9 @@ const router = require('express').Router();
 // const modelRoutes = require('filepath');
 
 // router.use('directoryPath', modelRoutes);
+const userRoutes = require('./userRoutes');
+
+
+router.use('/users', userRoutes);
 
 module.exports = router;
