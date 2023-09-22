@@ -2,51 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/pico.css">
     <title>WellnessWizard</title>
     <style>
+
         body {
-            font-family: 'Arial', sans-serif;
+            background-color: lightgray;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 960px;
             margin: auto;
-            padding: 20px;
         }
-        .section {
+
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            color: teal;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
-        .section h2 {
-            margin-bottom: 10px;
+
+        .card {
+            flex: 0 0 30%;
+            background-color: #e0e0e0;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
         }
+
+        .offset {
+            margin-top: 20px;
+        }
+
+    /* Individual card styles */
+        .user-info { background-color: #ffddc1; }
+        .magical-inspiration { background-color: #c2c2f0;}
+        .hydration-tracker { background-color: #c1e7e3;}
+        .fitness-tracker { background-color: #d5e8d4;}
+        .sleep-log { background-color: #fff2cc;}
+        .calorie-intake { background-color: #f8cecc;}
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Welcome to WellnessWizard!</h1>
-        </header>
-        
-        <div class="section">
-            <h2>Water Consumption</h2>
-            <p>You have consumed {{waterConsumption}} liters of water today.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Workout Logs</h2>
-            {{#each workouts}}
-                <p>{{this}}</p>
-            {{/each}}
-        </div>
-        
-        <div class="section">
-            <h2>Calorie Intake</h2>
-            <p>You have consumed {{calorieIntake}} calories today.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Sleep Log</h2>
-            <p>You have slept for {{totalSleep}} hours last night.</p>
-        </div>
+        {{{body}}}
     </div>
 </body>
 </html>
