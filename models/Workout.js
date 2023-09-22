@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const { Workout } = require('.');
+// const { Workout } = require('.');
 
 class Workout extends Model {}
 
@@ -12,11 +12,11 @@ Workout.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    workout_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    notes: {
       type: DataTypes.STRING,
     },
     date_created: {
