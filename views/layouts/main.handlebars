@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WellnessWizard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to WellnessWizard!</h1>
+        </header>
+        
+        <div class="section">
+            <h2>Water Consumption</h2>
+            <p>You have consumed {{waterConsumption}} liters of water today.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Workout Logs</h2>
+            {{#each workouts}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+        
+        <div class="section">
+            <h2>Calorie Intake</h2>
+            <p>You have consumed {{calorieIntake}} calories today.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Sleep Log</h2>
+            <p>You have slept for {{totalSleep}} hours last night.</p>
+        </div>
+    </div>
+</body>
+</html>
