@@ -6,69 +6,73 @@
                 <p class="subtitle has-text-grey-dark">"Your path to wellness, guided by wizards"</p>
             </header>
 
-            <div class="columns is-variable is-8">
-                <div class="column is-one-third">
-                    <div class="box user-info animated fadeIn">
-                        <h2 class="title is-3 has-text-info">User Info</h2>
-                        <ul class="has-text-weight-semibold">
-                            <li>Name: Emily</li>
-                            <li>Gender: Female</li>
-                            <li>Height: 7ft</li>
-                            <li>Weight: 130lb</li>
-                        </ul>
+            <div class="columns">
+                <div class="column">
+                    <div class="card user-info">
+                        <div class="card-content">
+                            <h2 class="title">User Info</h2>
+                            <ul class="list-none p-0">
+                                <li>Name: Emily</li>
+                                <li>Gender: Female</li>
+                                <li>Height: 7ft</li>
+                                <li>Weight: 130lb</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="column is-one-third">
-                    <div class="box magical-inspiration animated fadeIn">
-                        <h2 class="title is-3 has-text-warning">Magical Inspiration</h2>
-                        <p class="subtitle is-6 has-text-grey-dark">"Quote of the day"</p>
-                        <p><small>Display Date: 9/21/2023</small></p>
+                <div class="column">
+                    <div class="card magical-inspiration">
+                        <div class="card-content">
+                            <h2 class="title">Magical Inspiration</h2>
+                            <h4>"Quote of the day"</h4>
+                            <p><small>Display Date: 9/21/2023</small></p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="column is-one-third">
-                    <div class="box hydration-tracker animated fadeIn">
-                        <h2 class="title is-3 has-text-success">Hydration Tracker</h2>
-                        <p class="has-text-weight-semibold">You have consumed {{waterConsumption}} liters of water today.</p>
-                        <form action="/update-water" method="POST">
-                            <div class="field">
-                                <label for="waterAmount" class="label">Add water:</label>
-                                <div class="control">
-                                    <input type="number" id="waterAmount" name="waterAmount" min="0" step="0.1" class="input">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <button type="submit" class="button is-link is-light">Update</button>
-                                </div>
-                            </div>
-                        </form>
+                <div class="column">
+                    <div class="card hydration-tracker">
+                        <div class="card-content">
+                            <h2 class="title">Hydration Tracker</h2>
+                            <p>You have consumed {{waterConsumption}} liters of water today.</p>
+                            <form action="/update-water" method="POST" class="my-2">
+                                <label for="waterAmount" class="block mb-1">Add water:</label>
+                                <input type="number" id="waterAmount" name="waterAmount" min="0" step="0.1" class="block w-full p-1 mb-2 border rounded">
+                                <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="columns is-variable is-8">
-                <div class="column is-one-third">
-                    <div class="box fitness-tracker animated fadeIn">
-                        <h2 class="title is-3 has-text-danger">Fitness Tracker</h2>
-                        {{#each workouts}}
-                        <p class="has-text-weight-semibold">{{this}}</p>
-                        {{/each}}
+            <div class="columns">
+                <div class="column">
+                    <div class="card fitness-tracker">
+                        <div class="card-content">
+                            <h2 class="title">Fitness Tracker</h2>
+                            {{#each workouts}}
+                            <p>{{this}}</p>
+                            {{/each}}
+                        </div>
                     </div>
                 </div>
 
-                <div class="column is-one-third">
-                    <div class="box sleep-log animated fadeIn">
-                        <h2 class="title is-3 has-text-primary">Sleep Log</h2>
-                        <p class="has-text-weight-semibold">You slept for {{totalSleep}} hours last night.</p>
+                <div class="column">
+                    <div class="card sleep-log">
+                        <div class="card-content">
+                            <h2 class="title">Sleep Log</h2>
+                            <p>You slept for {{totalSleep}} hours last night.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="column is-one-third">
-                    <div class="box calorie-intake animated fadeIn">
-                        <h2 class="title is-3 has-text-warning">Calorie Intake</h2>
-                        <p class="has-text-weight-semibold">You have consumed {{calorieIntake}}/2500 calories today.</p>
+                <div class="column">
+                    <div class="card calorie-intake">
+                        <div class="card-content">
+                            <h2 class="title">Calorie Intake</h2>
+                            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,6 +83,11 @@
         .box {
             border-radius: 10px;
             box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
         }
 
         .animated {
@@ -158,19 +167,9 @@
             text-shadow: 2px 2px 4px #000000;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
-        // JavaScript to add more complex and interactive animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // For example, animate elements periodically
-            setInterval(function() {
-                var elements = document.querySelectorAll('.box');
-                elements.forEach(function(el) {
-                    el.classList.toggle('rotate');
-                });
-            }, 5000); // Toggle class every 10 seconds
-        });
-
-         document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Anime.js Magic Animations
             anime({
                 targets: '.box',
@@ -182,5 +181,4 @@
             });
         });
     </script>
-    </style>
 </body>
