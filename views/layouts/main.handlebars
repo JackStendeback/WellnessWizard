@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/pico.css">
+    {{!-- <link rel="stylesheet" href="https://unpkg.com/pico.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <title>WellnessWizard</title>
     <style>
-
         body {
-            background-color: lightgray;
+            border-color: rgb(248, 243, 243);
         }
 
         .container {
@@ -31,27 +32,58 @@
 
         .card {
             flex: 0 0 30%;
-            background-color: #e0e0e0;
+            border-color: #e0e0e0;
             padding: 20px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            margin: 10px;
+            /* Adjust the value as needed for spacing */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
         }
 
         .offset {
             margin-top: 20px;
         }
 
-    /* Individual card styles */
-        .user-info { background-color: #ffddc1; }
-        .magical-inspiration { background-color: #c2c2f0;}
-        .hydration-tracker { background-color: #c1e7e3;}
-        .fitness-tracker { background-color: #d5e8d4;}
-        .sleep-log { background-color: #fff2cc;}
-        .calorie-intake { background-color: #f8cecc;}
+        /* Apply rounded borders */
+        .rounded-border {
+            border-radius: 10px;
+            /* Adjust the border-radius value as desired */
+            border: 2px solid;
+            /* Change the border color as desired */
+            padding: 20px;
+            box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Individual card styles */
+        .user-info {
+            border-color: #7ee286;
+        }
+
+        .magical-inspiration {
+            border-color: #f5c24b;
+        }
+
+        .hydration-tracker {
+            border-color: #8ae5dc;
+        }
+
+        .fitness-tracker {
+            border-color: #e7f56c;
+        }
+
+        .sleep-log {
+            border-color: #9d81d9;
+        }
+
+        .calorie-intake {
+            border-color: #fb5a52;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         {{{body}}}
     </div>
 </body>
+
 </html>
