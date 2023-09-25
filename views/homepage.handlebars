@@ -6,9 +6,9 @@
         </header>
 
         <div class="row">
-            <div class="card user-info">
+            <div class="card user-info rounded-border">
                 <h2>User Info</h2>
-             <ul class="list-none p-0">
+             <ul class="list-none p-0 ">
                 <li>Name: Emily</li>
                 <li>Gender: Female</li>
                 <li>Height: 7ft</li>
@@ -16,13 +16,13 @@
              </ul>
             </div>
             
-            <div class="card magical-inspiration offset">
+            <div class="card magical-inspiration offset rounded-border">
                 <h2>Magical Inspiration</h2>
                 <h4>"Quote of the day"</h4>
                 <p><small>Display Date: 9/21/2023</small></p>
             </div>
             
-            <div class="card hydration-tracker">
+            <div class="card hydration-tracker rounded-border">
              <h2>Hydration Tracker</h2>
              <p>You have consumed {{waterConsumption}} liters of water today.</p>
              <form action="/update-water" method="POST" class="my-2">
@@ -34,19 +34,19 @@
         </div>
 
         <div class="row">
-            <div class="card fitness-tracker">
+            <div class="card fitness-tracker rounded-border">
                 <h2>Fitness Tracker</h2>
                     {{#each workouts}}
                         <p>{{this}}</p>
                     {{/each}}
             </div>
             
-            <div class="card sleep-log offset">
+            <div class="card sleep-log offset rounded-border">
                  <h2>Sleep Log</h2>
                  <p>You slept for {{totalSleep}} hours last night.</p>
             </div>
             
-            <div class="card calorie-intake">
+            <div class="card calorie-intake rounded-border">
                 <h2>Calorie Intake</h2>
                 <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
             </div>
