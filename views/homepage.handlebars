@@ -1,55 +1,186 @@
 <body>
-    <div class="container">
-        <header class="text-center py-2 header">
-            <h1>Wellness Wizard</h1>
-            <p>"Your path to wellness, guided by wizards"</p>
-        </header>
+    <section class="section">
+        <div class="container">
+            <header class="heading has-text-centered">
+                <h1 class="title is-1 has-text-primary">Wellness Wizard</h1>
+                <p class="subtitle has-text-grey-dark">"Your path to wellness, guided by wizards"</p>
+            </header>
 
-        <div class="row">
-            <div class="card user-info">
-                <h2>User Info</h2>
-             <ul class="list-none p-0">
-                <li>Name: Emily</li>
-                <li>Gender: Female</li>
-                <li>Height: 7ft</li>
-                <li>Weight: 130lb</li>
-             </ul>
+            <div class="columns is-variable is-8">
+                <div class="column is-one-third">
+                    <div class="box user-info animated fadeIn">
+                        <h2 class="title is-3 has-text-info">User Info</h2>
+                        <ul class="has-text-weight-semibold">
+                            <li>Name: Emily</li>
+                            <li>Gender: Female</li>
+                            <li>Height: 7ft</li>
+                            <li>Weight: 130lb</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column is-one-third">
+                    <div class="box magical-inspiration animated fadeIn">
+                        <h2 class="title is-3 has-text-warning">Magical Inspiration</h2>
+                        <p class="subtitle is-6 has-text-grey-dark">"Quote of the day"</p>
+                        <p><small>Display Date: 9/21/2023</small></p>
+                    </div>
+                </div>
+
+                <div class="column is-one-third">
+                    <div class="box hydration-tracker animated fadeIn">
+                        <h2 class="title is-3 has-text-success">Hydration Tracker</h2>
+                        <p class="has-text-weight-semibold">You have consumed {{waterConsumption}} liters of water today.</p>
+                        <form action="/update-water" method="POST">
+                            <div class="field">
+                                <label for="waterAmount" class="label">Add water:</label>
+                                <div class="control">
+                                    <input type="number" id="waterAmount" name="waterAmount" min="0" step="0.1" class="input">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="button is-link is-light">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            
-            <div class="card magical-inspiration offset">
-                <h2>Magical Inspiration</h2>
-                <h4>"Quote of the day"</h4>
-                <p><small>Display Date: 9/21/2023</small></p>
-            </div>
-            
-            <div class="card hydration-tracker">
-             <h2>Hydration Tracker</h2>
-             <p>You have consumed {{waterConsumption}} liters of water today.</p>
-             <form action="/update-water" method="POST" class="my-2">
-                <label for="waterAmount" class="block mb-1">Add water:</label>
-                <input type="number" id="waterAmount" name="waterAmount" min="0" step="0.1" class="block w-full p-1 mb-2 border rounded">
-                <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
-             </form>
+
+            <div class="columns is-variable is-8">
+                <div class="column is-one-third">
+                    <div class="box fitness-tracker animated fadeIn">
+                        <h2 class="title is-3 has-text-danger">Fitness Tracker</h2>
+                        {{#each workouts}}
+                        <p class="has-text-weight-semibold">{{this}}</p>
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class="column is-one-third">
+                    <div class="box sleep-log animated fadeIn">
+                        <h2 class="title is-3 has-text-primary">Sleep Log</h2>
+                        <p class="has-text-weight-semibold">You slept for {{totalSleep}} hours last night.</p>
+                    </div>
+                </div>
+
+                <div class="column is-one-third">
+                    <div class="box calorie-intake animated fadeIn">
+                        <h2 class="title is-3 has-text-warning">Calorie Intake</h2>
+                        <p class="has-text-weight-semibold">You have consumed {{calorieIntake}}/2500 calories today.</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="row">
-            <div class="card fitness-tracker">
-                <h2>Fitness Tracker</h2>
-                    {{#each workouts}}
-                        <p>{{this}}</p>
-                    {{/each}}
-            </div>
-            
-            <div class="card sleep-log offset">
-                 <h2>Sleep Log</h2>
-                 <p>You slept for {{totalSleep}} hours last night.</p>
-            </div>
-            
-            <div class="card calorie-intake">
-                <h2>Calorie Intake</h2>
-                <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
-            </div>
-        </div>
-    </div>
+    <style>
+        .box {
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+        }
+
+        .animated {
+            animation-duration: 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        .rotate {
+            animation: rotate 2s linear infinite;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #66c2ff; /* Change color as per your preference */
+            transition: background-color 0.3s;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #ff0000, 0 0 25px #ff0000, 0 0 50px #ff0000, 0 0 200px #ff0000;
+            }
+            100% {
+                box-shadow: 0 0 10px #ff0000, 0 0 35px #ff0000, 0 0 75px #ff0000, 0 0 150px #ff0000;
+            }
+        }
+
+        .magical-inspiration:hover {
+            animation: glow 1.5s alternate infinite;
+        }
+
+        .magical-text {
+            font-family: 'Tangerine', cursive;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px #000000;
+        }
+    </style>
+    <script>
+        // JavaScript to add more complex and interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // For example, animate elements periodically
+            setInterval(function() {
+                var elements = document.querySelectorAll('.box');
+                elements.forEach(function(el) {
+                    el.classList.toggle('rotate');
+                });
+            }, 5000); // Toggle class every 10 seconds
+        });
+
+         document.addEventListener('DOMContentLoaded', function() {
+            // Anime.js Magic Animations
+            anime({
+                targets: '.box',
+                translateY: 10,
+                direction: 'alternate',
+                loop: true,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+            });
+        });
+    </script>
+    </style>
 </body>

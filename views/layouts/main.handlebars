@@ -2,56 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/pico.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <title>WellnessWizard</title>
     <style>
-
         body {
-            background-color: lightgray;
+            background-color: #F4F4F4;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
         .container {
-            max-width: 960px;
-            margin: auto;
+            max-width: 1000px;
         }
 
         .header {
+            background-color: #00D1B2;
+            color: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
             text-align: center;
-        }
-
-        .header h1 {
-            color: teal;
         }
 
         .row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .card {
             flex: 0 0 30%;
-            background-color: #e0e0e0;
-            padding: 20px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .offset {
-            margin-top: 20px;
+        .card:hover {
+            transform: translateY(-10px);
         }
 
-    /* Individual card styles */
         .user-info { background-color: #ffddc1; }
         .magical-inspiration { background-color: #c2c2f0;}
         .hydration-tracker { background-color: #c1e7e3;}
         .fitness-tracker { background-color: #d5e8d4;}
         .sleep-log { background-color: #fff2cc;}
         .calorie-intake { background-color: #f8cecc;}
+        
+        h2, h3, h4, p {
+            padding: 0 15px;
+        }
+
+        ul, ol {
+            padding-left: 30px;
+        }
+
+        .offset {
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        {{{body}}}
-    </div>
+    <section class="section">
+        <div class="container">
+            {{{body}}}
+        </div>
+    </section>
 </body>
 </html>
