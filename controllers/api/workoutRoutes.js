@@ -25,7 +25,7 @@ router.delete('/:id', authenticated, async (req, res) => {
         });
 
     if (!workoutData) {
-        res.status(404).json({ message: "No project found with this id" });
+        res.status(404).json({ message: "No workout information found with this id" });
         return;
     }
 
