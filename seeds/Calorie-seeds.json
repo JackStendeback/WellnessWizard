@@ -1,0 +1,25 @@
+
+[
+    {
+      "totalDailyCalories": "2000",
+      "targetDailyCalories": "1800",
+      "notes": "Sample notes 1",
+      "user_id": 1
+    },
+    {
+      "totalDailyCalories": "2200",
+      "targetDailyCalories": "1900",
+      "notes": "Sample notes 2",
+      "user_id": 2
+    },
+    {
+      "totalDailyCalories": "1800",
+      "targetDailyCalories": "1600",
+      "notes": "Sample notes 3",
+      "user_id": 3
+    }
+  ]
+  
+
+
+
