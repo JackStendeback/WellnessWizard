@@ -5,30 +5,7 @@ const { Sleep, User, Workout, Hydration, Calorie } = require('../models');
 
 // GET request for finding all
 router.get('/', /* authenticated, */ async (req, res) => {
-    try {
-        const userData = await User.findOne({
-            where: { id: req.session.user_id },
-            include: [
-                {
-                    model: Hydration,
-                    attributes: ['totalDailyWater'],
-                },
-                {
-                    model: Workout,
-                    attributes: ['workout_name'],
-                },
-                {
-                    model: Calorie,
-                    attributes: ['totalDailyCalories'],
-                },
-                {
-                    model: Sleep,
-                    attributes: ['sleep_quality'],
-                },
-            ]});
-
-        const user = userData.map((user) => user.get({ plain: true }));
-        
+    try {        
         res.render('homepage', {
 
             waterConsumption: '2.5',
@@ -58,7 +35,7 @@ router.get('/workout/:id', /* authenticated, */ async (req, res) => {
 
         res.render('workout', {
             ...workout,
-            logged_in: req.session.logged_in
+            // logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -80,7 +57,7 @@ router.get('/hydration/:id',  /* authenticated, */ async (req, res) => {
 
         res.render('hydration', {
             ...hydration,
-            logged_in: req.session.logged_in
+            // logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -102,7 +79,7 @@ router.get('/calories/:id',  /* authenticated, */ async (req, res) => {
 
         res.render('calories', {
             ...calories,
-            logged_in: req.session.logged_in
+            // logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
@@ -124,7 +101,7 @@ router.get('/sleep/:id',  /* authenticated, */ async (req, res) => {
 
         res.render('sleep', {
             ...sleep,
-            logged_in: req.session.logged_in
+            // logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
