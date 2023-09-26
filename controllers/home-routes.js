@@ -12,7 +12,7 @@ router.get('/', /* authenticated, */ async (req, res) => {
             workouts: ['Running - 30 minutes', 'Weightlifting - 45 minutes'],
             calorieIntake: '2000',
             totalSleep: '8',
-            logged_in: req.session.logged_in
+            // logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
