@@ -14,16 +14,6 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-  res.render('homepage', {
-     
-      waterConsumption: '2.5',
-      workouts: ['Running - 30 minutes', 'Weightlifting - 45 minutes'],
-      calorieIntake: '2000',
-      totalSleep: '8'
-  });
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
