@@ -24,7 +24,7 @@
     justify-content: center;
     flex-direction: column;
     box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
-    margin-top: -80px; /* Adjust this negative margin to move the header higher */
+    margin-top: -80px;
 }
 
 
@@ -37,7 +37,7 @@
 
         .columns {
             display: flex;
-            flex-wrap: wrap; /* Will wrap the .column elements when the container is too small */
+            flex-wrap: wrap;
             gap: 16px;
             margin: 20px 0;
             justify-content: space-around;
@@ -45,7 +45,7 @@
 
         .column {
             flex: 1;
-            min-width: 150px; /* Minimum width of the cards to ensure visibility */
+            min-width: 150px;
             box-sizing: border-box;
         }
 
@@ -70,7 +70,6 @@
             text-align: center;
         }
 
-        /* Color Coding for different cards */
         .user-info { background-color: #f1a9a0; }
         .magical-inspiration { background-color: #9b59b6; }
         .hydration-tracker { background-color: #6bb9f0; }
@@ -91,23 +90,20 @@
 
         .overlay.active { display: block; }
 
-        /* Icon styles */
-      /* Adjusted styles for circular icons */
 .icon-wrapper {
-    background-color: inherit; /* Use the card's background color */
+    background-color: inherit;
     border-radius: 50%;
-    width: 60px; /* Adjusted size */
-    height: 60px; /* Adjusted size */
+    width: 60px; 
+    height: 60px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 10px; /* Centered and added bottom margin */
+    margin: 0 auto 10px;
 }
 
-/* Adjusted icon size and color */
 .icon {
-    font-size: 1.8rem; /* Adjusted icon size */
-    color: #ffffff; /* Adjusted icon color */
+    font-size: 1.8rem;
+    color: #ffffff;
 }
 
         @media (max-width: 768px) {
@@ -128,17 +124,17 @@
 
         @media (max-width: 576px) {
             .column, .icon, .title, .heading {
-                font-size: 0.8rem; /* Reduced font size for smaller screens */
+                font-size: 0.8rem;
             }
             .heading {
-                padding: 0.8rem 0; /* Reduced padding for smaller screens */
-                line-height: 1.2; /* Adjusted line height for smaller screens */
+                padding: 0.8rem 0;
+                line-height: 1.2;
             }
             .card-content {
-                padding: 0.5rem; /* Reduced padding for card content on smaller screens */
+                padding: 0.5rem;
             }
             .icon-wrapper {
-                padding: 5px; /* Reduced padding around the icon */
+                padding: 5px;
             }
         }
     </style>

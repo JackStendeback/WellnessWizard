@@ -164,16 +164,14 @@
             cursor: pointer;
         }
 
-        /* Wellness Wizard card styles */
 .wizard-container {
     text-align: center;
     position: relative;
-    height: 150px; /* Adjust the height as needed */
-    margin-bottom: -40px; /* Adjust this negative margin to move it higher */
+    height: 150px;
+    margin-bottom: -40px; 
     overflow: hidden;
 }
 
-/* Wizard styles */
 .wizard {
     position: absolute;
     bottom: 0;
@@ -183,7 +181,6 @@
     animation: wizardCycling 15s linear infinite;
 }
 
-/* Animation keyframes for cycling through movements */
 @keyframes wizardCycling {
     0%, 100% {
         transform: translateY(0) rotate(0) translateX(-50%);
@@ -218,7 +215,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Animation or other JavaScript goes here
+            
         });
 
         window.toggleCardContent = function (card) {
