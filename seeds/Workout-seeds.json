@@ -1,0 +1,17 @@
+[
+    {
+        "workout_name": "Morning Run",
+        "notes": "Sample notes 1",
+        "user_id": 1
+    },
+    {
+        "workout_name": "Afternoon Gym Session",
+        "notes": "Sample notes 2",
+        "user_id": 2
+    },
+    {
+        "workout_name": "Evening Yoga",
+        "notes": "Sample notes 3",
+        "user_id": 1
+    }
+]
