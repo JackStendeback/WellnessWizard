@@ -3,19 +3,37 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Wellness Wizard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-    <title>WellnessWizard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            border: 2px solid lightgray;
+            font-family: 'Arial', sans-serif;
+            background-color: #e4f4f2;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
+
+       .heading {
+    background-color: #168cdb;
+    color: #ffffff;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    margin-top: -80px;
+}
+
 
         .container {
             max-width: 1000px;
         }
 
         .header {
-            border: 2px solid #00D1B2;
+            background-color: #00D1B2;
             color: white;
             border-radius: 8px;
             padding: 10px;
@@ -23,16 +41,23 @@
             text-align: center;
         }
 
-        .row {
+        .columns {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
             flex-wrap: wrap;
+            gap: 16px;
+            margin: 20px 0;
+            justify-content: space-around;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 150px;
+            box-sizing: border-box;
         }
 
         .card {
             flex: 0 0 30%;
-            background-color: #e0e0e0;
+            background-color: #fff8f8;
             padding: 20px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
         }
@@ -42,12 +67,12 @@
         }
 
     /* Individual card styles */
-        .user-info { background-color: #ffddc1; }
-        .magical-inspiration { background-color: #c2c2f0;}
-        .hydration-tracker { background-color: #c1e7e3;}
-        .fitness-tracker { background-color: #d5e8d4;}
-        .sleep-log { background-color: #fff2cc;}
-        .calorie-intake { background-color: #f8cecc;}
+        .user-info {border: 2px solid #96f463;}
+        .magical-inspiration {border: 2px solid #ea912b;}
+        .hydration-tracker {border: 2px solid #6ffbed;}
+        .fitness-tracker {border: 2px solid #f2f45c;}
+        .sleep-log {border: 2px solid #ce70f0;}
+        .calorie-intake {border: 2px solid #f25850;}
     </style>
 </head>
 
