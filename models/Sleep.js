@@ -37,7 +37,7 @@ Sleep.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Workout',
+    modelName: 'Sleep',
   }
 );
 
