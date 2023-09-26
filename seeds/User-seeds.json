@@ -1,0 +1,19 @@
+[
+    {
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "password": "$2b$10$Tj.FP4GNTZekVOq7yz//Oe7lxuK61EAXQlFn6cqR1s6MT0EHs3R92"
+    },
+    {
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "password": "$2b$10$FHZbHzOMyVEQ.fy7TOF4IuGy5WwPT4INlZpPWGsc55wSOShcKSzZC" 
+    },
+    {
+      "name": "Alice Johnson",
+      "email": "alicejohnson@example.com",
+      "password": "$2b$10$M3A4MXAuv.Nw9GOrqVOe0.B0gawXjF04.zklp3NSY2Syf5Z9on.6." 
+    }
+  ]
+  
+

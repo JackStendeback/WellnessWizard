@@ -5,25 +5,21 @@ const Workout = require('./Workout')
 const User = require('./User');
 // const sequelize = require('sequelize');
 
-User.hasMany(Workout, {
+User.hasMany(Workout, Sleep, Hydration, Calorie, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
-    
 });
 
 Workout.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
 });
 
 Sleep.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
 });
 
 Hydration.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
 });
 
 Calorie.belongsTo(User, {
