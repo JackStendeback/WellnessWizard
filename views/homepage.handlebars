@@ -6,9 +6,13 @@
                 <p class="subtitle has-text-grey-dark">"Your path to wellness, guided by wizards"</p>
             </header>
 
+            <div class="wizard" id="animated-wizard">
+                <!-- ... (Other wizard elements) ... -->
+            </div>
+
             <div class="columns">
                 <div class="column">
-                    <div class="card user-info">
+                    <div class="card user-info is-rounded">
                         <div class="card-content">
                             <h2 class="title">User Info</h2>
                             <ul class="list-none p-0">
@@ -22,7 +26,7 @@
                 </div>
 
                 <div class="column">
-                    <div class="card magical-inspiration">
+                    <div class="card magical-inspiration is-rounded">
                         <div class="card-content">
                             <h2 class="title">Magical Inspiration</h2>
                             <h4>"Quote of the day"</h4>
@@ -32,14 +36,16 @@
                 </div>
 
                 <div class="column">
-                    <div class="card hydration-tracker">
+                    <div class="card hydration-tracker is-rounded">
                         <div class="card-content">
                             <h2 class="title">Hydration Tracker</h2>
                             <p>You have consumed {{waterConsumption}} liters of water today.</p>
                             <form action="/update-water" method="POST" class="my-2">
                                 <label for="waterAmount" class="block mb-1">Add water:</label>
-                                <input type="number" id="waterAmount" name="waterAmount" min="0" step="0.1" class="block w-full p-1 mb-2 border rounded">
-                                <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                                <input type="number" id="waterAmount" name="waterAmount" min="0" step="0.1"
+                                    class="block w-full p-1 mb-2 border rounded">
+                                <button type="submit"
+                                    class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
                             </form>
                         </div>
                     </div>
@@ -48,7 +54,7 @@
 
             <div class="columns">
                 <div class="column">
-                    <div class="card fitness-tracker">
+                    <div class="card fitness-tracker is-rounded">
                         <div class="card-content">
                             <h2 class="title">Fitness Tracker</h2>
                             {{#each workouts}}
@@ -59,7 +65,7 @@
                 </div>
 
                 <div class="column">
-                    <div class="card sleep-log">
+                    <div class="card sleep-log is-rounded">
                         <div class="card-content">
                             <h2 class="title">Sleep Log</h2>
                             <p>You slept for {{totalSleep}} hours last night.</p>
@@ -68,7 +74,7 @@
                 </div>
 
                 <div class="column">
-                    <div class="card calorie-intake">
+                    <div class="card calorie-intake is-rounded">
                         <div class="card-content">
                             <h2 class="title">Calorie Intake</h2>
                             <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
@@ -78,107 +84,539 @@
             </div>
         </div>
     </section>
-
     <style>
-        .box {
+.wizard {
+    position: relative;
+    width: 190px;
+    height: 240px;
+}
+
+.body {
+    position: absolute;
+    bottom: 0;
+    left: 68px;
+    height: 100px;
+    width: 60px;
+    background: #3498db;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        height: 100px;
+        width: 60px;
+        background: #3498db;
+        transform: skewX(14deg);
+    }
+}
+
+.right-arm {
+    position: absolute;
+    bottom: 74px;
+    left: 110px;
+    height: 44px;
+    width: 90px;
+    background: #3498db;
+    border-radius: 22px;
+    /** animation */
+    transform-origin: 16px 22px;
+    transform: rotate(70deg);
+    animation: right_arm 10s ease-in-out infinite;
+
+    .right-hand {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: blanchedalmond;
+        /** animation */
+        transform-origin: center center;
+        transform: rotate(-40deg);
+        animation: right_hand 10s ease-in-out infinite;
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0px;
+            top: -8px;
+            width: 15px;
+            height: 30px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+            background: blanchedalmond;
+            /** Animation */
+            transform: translateY(16px);
+            animation: right_finger 10s ease-in-out infinite;
+        }
+    }
+}
+
+.left-arm {
+    position: absolute;
+    bottom: 74px;
+    left: 26px;
+    height: 44px;
+    width: 70px;
+    background: #3498db;
+    border-bottom-left-radius: 8px;
+    /** animation */
+    transform-origin: 60px 26px;
+    transform: rotate(-70deg);
+    animation: left_arm 10s ease-in-out infinite;
+
+    .left-hand {
+        position: absolute;
+        left: -18px;
+        top: 0;
+        width: 18px;
+        height: 30px;
+        border-top-left-radius: 35px;
+        border-bottom-left-radius: 35px;
+        background: blanchedalmond;
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 15px;
+            border-radius: 20px;
+            background: blanchedalmond;
+            /** Animation */
+            transform-origin: right bottom;
+            transform: scaleX(0);
+            animation: left_finger 10s ease-in-out infinite;
+        }
+    }
+}
+
+.head {
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 160px;
+    height: 210px;
+    /** Animation */
+    transform-origin: center center;
+    transform: rotate(-3deg);
+    animation: head 10s ease-in-out infinite;
+
+    .beard {
+        position: absolute;
+        bottom: 0;
+        left: 38px;
+        height: 106px;
+        width: 80px;
+        border-bottom-right-radius: 55%;
+        background: rgb(77, 76, 76);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 16px;
+            left: -10px;
+            width: 40px;
+            height: 20px;
+            border-radius: 20px;
+            background: rgb(77, 76, 76);
+        }
+    }
+
+    .face {
+        position: absolute;
+        bottom: 76px;
+        left: 38px;
+        height: 30px;
+        width: 60px;
+        background: blanchedalmond;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 40px;
+            width: 20px;
+            height: 40px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            background: blanchedalmond;
         }
 
-        .box:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 16px;
+            left: -10px;
+            width: 50px;
+            height: 20px;
+            border-radius: 20px;
+            border-bottom-right-radius: 0px;
+            background: rgb(77, 76, 76);
         }
 
-        .animated {
-            animation-duration: 1s;
-        }
+        .adds {
+            /** Nose */
+            position: absolute;
+            top: 0px;
+            left: -10px;
+            width: 40px;
+            height: 20px;
+            border-radius: 20px;
+            background: blanchedalmond;
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+            &::after {
+                /** Ear */
+                content: "";
+                position: absolute;
+                top: 5px;
+                left: 80px;
+                width: 15px;
+                height: 20px;
+                border-bottom-right-radius: 20px;
+                border-top-right-radius: 20px;
+                background: blanchedalmond;
             }
-            to {
-                opacity: 1;
+        }
+    }
+
+    .hat {
+        position: absolute;
+        bottom: 106px;
+        left: 0;
+        width: 160px;
+        height: 20px;
+        border-radius: 20px;
+        background: #3498db;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translatex(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 34px 70px 50px;
+            border-color: transparent transparent #3498db transparent;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 20px;
+        }
+
+        .hat-of-the-hat {
+            position: absolute;
+            bottom: 78px;
+            left: 79px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 25px 25px 19px;
+            border-color: transparent transparent #3498db transparent;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 6px;
+                left: -4px;
+                width: 35px;
+                height: 10px;
+                border-radius: 10px;
+                border-bottom-left-radius: 0px;
+                background: #3498db;
+                transform: rotate(40deg);
             }
         }
 
-        .fadeIn {
-            animation-name: fadeIn;
-        }
+        .four-point-star {
+            position: absolute;
+            width: 12px;
+            height: 12px;
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
+            &::after,
+            &::before {
+                content: "";
+                position: absolute;
+                background: rgb(77, 76, 76);
+                display: block;
+                left: 0;
+                width: 141.4213%;
+                /* 100% * √2 */
+                top: 0;
+                bottom: 0;
+                border-radius: 10%;
+                transform: rotate(66.66deg) skewX(45deg);
             }
 
-            40% {
-                transform: translateY(-20px);
+            &::after {
+                transform: rotate(156.66deg) skew(45deg);
             }
 
-            60% {
-                transform: translateY(-10px);
+            &.--first {
+                bottom: 28px;
+                left: 46px;
+            }
+
+            &.--second {
+                bottom: 40px;
+                left: 80px;
+            }
+
+            &.--third {
+                bottom: 15px;
+                left: 108px;
             }
         }
+    }
+}
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
+/** 10s animation - 10% = 1s */
 
-        .bounce {
-            animation: bounce 2s infinite;
-        }
+@keyframes right_arm {
+    0% {
+        transform: rotate(70deg);
+    }
 
-        .rotate {
-            animation: rotate 2s linear infinite;
-        }
+    10% {
+        transform: rotate(8deg);
+    }
 
-        .box:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s;
-        }
+    15% {
+        transform: rotate(20deg);
+    }
 
-        button:hover {
-            background-color: #66c2ff; /* Change color as per your preference */
-            transition: background-color 0.3s;
-        }
+    20% {
+        transform: rotate(10deg);
+    }
 
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 5px #ff0000, 0 0 25px #ff0000, 0 0 50px #ff0000, 0 0 200px #ff0000;
-            }
-            100% {
-                box-shadow: 0 0 10px #ff0000, 0 0 35px #ff0000, 0 0 75px #ff0000, 0 0 150px #ff0000;
-            }
-        }
+    25% {
+        transform: rotate(26deg);
+    }
 
-        .magical-inspiration:hover {
-            animation: glow 1.5s alternate infinite;
-        }
+    30% {
+        transform: rotate(10deg);
+    }
 
-        .magical-text {
-            font-family: 'Tangerine', cursive;
-            font-size: 2em;
-            text-shadow: 2px 2px 4px #000000;
-        }
+    35% {
+        transform: rotate(28deg);
+    }
+
+    40% {
+        transform: rotate(9deg);
+    }
+
+    45% {
+        transform: rotate(28deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+
+    58% {
+        transform: rotate(74deg);
+    }
+
+    62% {
+        transform: rotate(70deg);
+    }
+}
+
+@keyframes left_arm {
+    0% {
+        transform: rotate(-70deg);
+    }
+
+    10% {
+        transform: rotate(6deg);
+    }
+
+    15% {
+        transform: rotate(-18deg);
+    }
+
+    20% {
+        transform: rotate(5deg);
+    }
+
+    25% {
+        transform: rotate(-18deg);
+    }
+
+    30% {
+        transform: rotate(5deg);
+    }
+
+    35% {
+        transform: rotate(-17deg);
+    }
+
+    40% {
+        transform: rotate(5deg);
+    }
+
+    45% {
+        transform: rotate(-18deg);
+    }
+
+    50% {
+        transform: rotate(6deg);
+    }
+
+    58% {
+        transform: rotate(-74deg);
+    }
+
+    62% {
+        transform: rotate(-70deg);
+    }
+}
+
+@keyframes right_hand {
+    0% {
+        transform: rotate(-40deg);
+    }
+
+    10% {
+        transform: rotate(-20deg);
+    }
+
+    15% {
+        transform: rotate(-5deg);
+    }
+
+    20% {
+        transform: rotate(-60deg);
+    }
+
+    25% {
+        transform: rotate(-0deg);
+    }
+
+    30% {
+        transform: rotate(-60deg);
+    }
+
+    35% {
+        transform: rotate(-0deg);
+    }
+
+    40% {
+        transform: rotate(-40deg);
+    }
+
+    45% {
+        transform: rotate(-60deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    60% {
+        transform: rotate(-40deg);
+    }
+}
+
+@keyframes right_finger {
+    0% {
+        transform: translateY(16px);
+    }
+
+    10% {
+        transform: none;
+    }
+
+    50% {
+        transform: none;
+    }
+
+    60% {
+        transform: translateY(16px);
+    }
+}
+
+@keyframes left_finger {
+    0% {
+        transform: scaleX(0);
+    }
+
+    10% {
+        transform: scaleX(1) rotate(6deg);
+    }
+
+    15% {
+        transform: scaleX(1) rotate(0deg);
+    }
+
+    20% {
+        transform: scaleX(1) rotate(8deg);
+    }
+
+    25% {
+        transform: scaleX(1) rotate(0deg);
+    }
+
+    30% {
+        transform: scaleX(1) rotate(7deg);
+    }
+
+    35% {
+        transform: scaleX(1) rotate(0deg);
+    }
+
+    40% {
+        transform: scaleX(1) rotate(5deg);
+    }
+
+    45% {
+        transform: scaleX(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scaleX(1) rotate(6deg);
+    }
+
+    58% {
+        transform: scaleX(0);
+    }
+}
+
+@keyframes head {
+    0% {
+        transform: rotate(-3deg);
+    }
+
+    10% {
+        transform: translatex(10px) rotate(7deg);
+    }
+
+    50% {
+        transform: translatex(0px) rotate(0deg);
+    }
+
+    56% {
+        transform: rotate(-3deg);
+    }
+}
+
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Anime.js Magic Animations
-            anime({
-                targets: '.box',
-                translateY: 10,
-                direction: 'alternate',
-                loop: true,
-                easing: 'easeInOutQuad',
-                duration: 1000,
-            });
-        });
-    </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const wizard = document.getElementById('animated-wizard');
+  wizard.style.animation = 'wizard-animation 10s ease-in-out infinite';
+});
+</script>
+
 </body>

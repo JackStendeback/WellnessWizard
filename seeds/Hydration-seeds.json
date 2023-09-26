@@ -1,0 +1,25 @@
+[
+    {
+      "totalDailyWater": "64 oz",
+      "targetDailyWater": "80 oz",
+      "notes": "Sample notes 1",
+      "user_id": 1
+    },
+    {
+      "totalDailyWater": "48 oz",
+      "targetDailyWater": "64 oz",
+      "notes": "Sample notes 2",
+      "user_id": 2
+    },
+    {
+      "totalDailyWater": "72 oz",
+      "targetDailyWater": "96 oz",
+      "notes": "Sample notes 3",
+      "user_id": 3
+    }
+  ]
+  
+
+
+
+

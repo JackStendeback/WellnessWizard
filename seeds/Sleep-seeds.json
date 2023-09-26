@@ -1,0 +1,17 @@
+[
+  {
+    "sleep_quality": "Good",
+    "notes": "Sample notes 1",
+    "user_id": 1
+  },
+  {
+    "sleep_quality": "Average",
+    "notes": "Sample notes 2",
+    "user_id": 2
+  },
+  {
+    "sleep_quality": "Excellent",
+    "notes": "Sample notes 3",
+    "user_id": 3
+  }
+]
