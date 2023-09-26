@@ -41,7 +41,7 @@ Hydration.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Calorie',
+    modelName: 'Hydration',
   }
 );
 

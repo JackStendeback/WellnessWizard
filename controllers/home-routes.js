@@ -6,12 +6,36 @@ const { Sleep, User, Workout, Hydration, Calorie } = require('../models');
 // GET request for finding all
 router.get('/', /* authenticated, */ async (req, res) => {
     try {
+        const userData = await User.findOne({
+            where: { id: req.session.user_id },
+            include: [
+                {
+                    model: Hydration,
+                    attributes: ['totalDailyWater'],
+                },
+                {
+                    model: Workout,
+                    attributes: ['workout_name'],
+                },
+                {
+                    model: Calorie,
+                    attributes: ['totalDailyCalories'],
+                },
+                {
+                    model: Sleep,
+                    attributes: ['sleep_quality'],
+                },
+            ]});
+
+        const user = userData.map((user) => user.get({ plain: true }));
+        
         res.render('homepage', {
 
             waterConsumption: '2.5',
             workouts: ['Running - 30 minutes', 'Weightlifting - 45 minutes'],
             calorieIntake: '2000',
             totalSleep: '8',
+            // can maybe replace everything above with just "user"
             // logged_in: req.session.logged_in
         });
     } catch (err) {
