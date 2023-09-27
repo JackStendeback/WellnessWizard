@@ -108,13 +108,24 @@ router.get('/sleep/:id',  /* authenticated, */ async (req, res) => {
     }
 });
 
-/* Uncomment once a login.handlebars is done
-router.get('/login', (req, res) => {
-     if (req.session.logged_in) {
-         res.redirect('/');
-         return;
-     }
+router.get('/sign-up', (req, res) => {
 
-     res.render('login');
-}) */
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('sign-up');
+});
+
+router.get('/login', (req,res) => {
+    
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('login');
+});
+
 module.exports = router;
