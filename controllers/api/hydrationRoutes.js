@@ -6,7 +6,6 @@ router.post('/', authenticated, async (req, res) => {
     try {
         const newHydration = await Hydration.create({
             ...req.body,
-            user_id: req.session.user_id,
         });
 
         res.status(200).json(newHydration);
@@ -20,7 +19,6 @@ router.delete('/:id', authenticated, async (req, res) => {
         const hydrationData = await Hydration.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id,
             },
         });
 

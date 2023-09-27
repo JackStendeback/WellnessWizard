@@ -6,7 +6,6 @@ router.post('/', authenticated, async (req, res) => {
     try {
         const newCalorie = await Calorie.create({
             ...req.body,
-            user_id: req.session.user_id,
         });
 
         res.status(200).json(newCalorie);
@@ -20,7 +19,6 @@ router.delete('/:id', authenticated, async (req, res) => {
         const calorieData = await Calorie.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id,
             },
         });
 

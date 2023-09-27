@@ -6,7 +6,6 @@ router.post('/', authenticated, async (req, res) => {
     try {
         const newSleep = await Sleep.create({
             ...req.body,
-            user_id: req.session.user_id,
         });
 
         res.status(200).json(newSleep);
@@ -20,7 +19,6 @@ router.delete('/:id', authenticated, async (req, res) => {
         const sleepData = await Sleep.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id,
             },
         });
 
