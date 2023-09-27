@@ -53,9 +53,10 @@
                             </div>
                             <h2 class="title">Hydration Tracker</h2>
                             <p>You have consumed {{waterConsumption}} liters of water today.</p>
-                            <form action="/update-water" method="POST" class="my-2">
+                            <form action="/api/hydration" class="my-2" id="create-hydration">
                                 <label for="waterAmount" class="block mb-1">Add water:</label>
-                                <input type="number" id="waterAmount" name="waterAmount" min="0" step="1" class="block w-full p-1 mb-2 border rounded" onclick="event.stopPropagation();">
+                                <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1" class="block w-full p-1 mb-2 border rounded">
+                                <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1" class="block w-full p-1 mb-2 border rounded">
                                 <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
                             </form>
                         </div>
@@ -232,4 +233,5 @@
             if (activeCard) activeCard.classList.remove('active');
         }
     </script>
+    <script src="/js/homepage.js"></script>
 </body>
