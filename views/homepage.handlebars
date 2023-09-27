@@ -1,6 +1,6 @@
 <body>
-    <nav class="navbar">
-        <div class="navbar-brand has-shadow">
+    <nav class="navbar has-shadow">
+        <div class="navbar-brand">
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
@@ -10,9 +10,9 @@
         </div>
     </nav>
     <section class="section">
-        {{!-- <div class="container"> --}}
+        <div class="container">
             <header class="heading">
-                <h1 class="title is-1 has-text-primary">Wellness Wizard</h1>
+                <h1 class="title is-1 has-text-primary" id="shadow">Wellness Wizard</h1>
                 <p class="subtitle has-text-grey-dark">"Your path to wellness, guided by wizards"</p>
             </header>
 
@@ -22,7 +22,7 @@
             </div>
 <div class="columns is-multiline">
                 <!-- User Info Card -->
-                <div class="column is-one-third">
+                <div class="column">
                     <div class="card user-info" onclick="toggleCardContent(this)">
                         <div class="card-content">
                             <div class="icon-wrapper">
@@ -41,7 +41,7 @@
                 </div>
 
                 <!-- Magical Inspiration Card -->
-                <div class="column is-one-third">
+                <div class="column">
                     <div class="card magical-inspiration" onclick="toggleCardContent(this)">
                         <div class="card-content">
                             <div class="icon-wrapper">
@@ -56,7 +56,7 @@
                 </div>
 
                 <!-- Hydration Tracker Card -->
-                <div class="column is-one-third">
+                <div class="column">
                     <div class="card hydration-tracker" onclick="toggleCardContent(this)">
                         <div class="card-content">
                             <div class="icon-wrapper">
@@ -84,7 +84,7 @@
 
             <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
-                <div class="column is-one-third">
+                <div class="column">
                     <div class="card fitness-tracker" onclick="toggleCardContent(this)">
                         <div class="card-content">
                             <div class="icon-wrapper">
@@ -100,7 +100,7 @@
                 </div>
 
                 <!-- Sleep Log Card -->
-                <div class="column is-one-third">
+                <div class="column">
                     <div class="card sleep-log" onclick="toggleCardContent(this)">
                             <div class="card-content">
                                 <div class="icon-wrapper">
@@ -114,7 +114,7 @@
                     </div>
 
                     <!-- Calorie Intake Card -->
-                    <div class="column is-one-third">
+                    <div class="column">
                         <div class="card calorie-intake" onclick="toggleCardContent(this)">
                             <div class="card-content">
                                 <div class="icon-wrapper">
@@ -122,11 +122,13 @@
                                 </div>
                                 <h2 class="title">Calorie Intake</h2>
                                 <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                                <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
                                 
                             </div>
                         </div>
                     </div>
                 </div>
+        </div>
     </section>
 
     <div class="overlay" onclick="toggleOverlay()"></div>
