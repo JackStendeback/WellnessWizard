@@ -36,6 +36,7 @@
                                 <li>Height: 7ft</li>
                                 <li>Weight: 130lb</li>
                             </ul>
+                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -50,6 +51,7 @@
                             <h2 class="title">Magical Inspiration</h2>
                             <h4></h4>
                             <p><small>Date:</small></p>
+                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -73,6 +75,7 @@
                                 <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
 
                             </form>
+                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -90,6 +93,7 @@
                             {{#each workouts}}
                             <p>{{this}}</p>
                             {{/each}}
+                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -103,6 +107,7 @@
                                 </div>
                                 <h2 class="title">Sleep Log</h2>
                                 <p>You slept for {{totalSleep}} hours last night.</p>
+                                <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                             </div>
                     </div>
 
@@ -115,6 +120,7 @@
                                 </div>
                                 <h2 class="title">Calorie Intake</h2>
                                 <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                                
                             </div>
                         </div>
                     </div>
@@ -135,6 +141,20 @@
             display: block;
             text-align: center;
         }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+
+.card.active .close-btn {
+    display: block; /* Display when card is active */
+}
+
 
         .heading {
             height: 120px;
@@ -239,25 +259,16 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const closeButtons = document.querySelectorAll('.card .close-button');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                closeCard(button);
+            });
         });
 
-        window.toggleCardContent = function (card) {
-            const overlay = document.querySelector('.overlay');
-            card.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        window.toggleOverlay = function () {
-            const overlay = document.querySelector('.overlay');
-            const activeCard = document.querySelector('.card.active');
-            overlay.classList.remove('active');
-            if (activeCard) activeCard.classList.remove('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
         const quotes = [
             "Your limitation—it's only your imagination.",
             "Push yourself, because no one else is going to do it for you.",
@@ -271,9 +282,9 @@
             "Wake up with determination. Go to bed with satisfaction.",
         ];
 
-        let startDate = Date.UTC(2023, 8, 21); 
+        let startDate = Date.UTC(2023, 8, 21);
         let currentDate = new Date();
-    
+
         let differenceInTime = currentDate.getTime() - startDate;
         let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
 
@@ -283,12 +294,32 @@
         }
 
         let index = differenceInDays % quotes.length;
-        document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`; 
+        document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
 
         let displayDate = currentDate.toLocaleDateString();
         document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
-});
+    });
 
-    </script>
-    <script src="/js/homepage.js"></script>
+    window.toggleCardContent = function (card) {
+        const overlay = document.querySelector('.overlay');
+        card.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    window.toggleOverlay = function () {
+        const activeCard = document.querySelector('.card.active');
+        if (!activeCard) {
+            const overlay = document.querySelector('.overlay');
+            overlay.classList.remove('active');
+        }
+    }
+
+    window.closeCard = function (button) {
+        const card = button.closest('.card');
+        const overlay = document.querySelector('.overlay');
+        card.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+</script>
+<script src="/js/homepage.js"></script>
 </body>
