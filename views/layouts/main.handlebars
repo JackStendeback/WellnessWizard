@@ -15,22 +15,57 @@
             overflow-x: hidden;
         }
 
-       .heading {
-    background-color: #168cdb;
-    color: #ffffff;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
-    margin-top: -80px;
-}
+        .heading {
+            background-color: #168cdb;
+            color: whitesmoke;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+            margin-top: -80px;
+        }
 
 
         .container {
             max-width: 1000px;
         }
+
+        /* Add a class to your <nav> element for better targeting */
+        .navbar {
+            position: fixed;
+            /* Fixed position to stick it at the top */
+            top: 0;
+            /* Position it at the top of the page */
+            left: 0;
+            right: 0;
+            /* Make it span the full width */
+            background-color: #bdecf3;
+            /* Change the background color to your preference */
+            padding: 5px 0;
+            /* Add padding to create space between the navbar and content */
+            z-index: 1000;
+            /* Ensure it's above other elements */
+        }
+
+        /* Style the links inside the navbar */
+        .navbar-item {
+            color: darkslategrey;
+            /* Text color for links */
+            margin: 0 15px;
+            /* Add spacing between the links */
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        /* Style the section containing the header */
+        .section {
+            margin-top: 60px;
+            /* Add margin to push content below the navbar */
+            /* Add other styling as needed */
+        }
+
 
         .header {
             background-color: #00D1B2;
@@ -57,22 +92,38 @@
 
         .card {
             flex: 0 0 30%;
-            background-color: #fff8f8;
-            padding: 20px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            background-color: whitesmoke padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
         }
 
         .card:hover {
             transform: translateY(-10px);
         }
 
-    /* Individual card styles */
-        .user-info {border: 2px solid #96f463;}
-        .magical-inspiration {border: 2px solid #ea912b;}
-        .hydration-tracker {border: 2px solid #6ffbed;}
-        .fitness-tracker {border: 2px solid #f2f45c;}
-        .sleep-log {border: 2px solid #ce70f0;}
-        .calorie-intake {border: 2px solid #f25850;}
+        /* Individual card styles */
+        .user-info {
+            border: 2px solid #96f463;
+        }
+
+        .magical-inspiration {
+            border: 2px solid #ea912b;
+        }
+
+        .hydration-tracker {
+            border: 2px solid #6ffbed;
+        }
+
+        .fitness-tracker {
+            border: 2px solid #f2f45c;
+        }
+
+        .sleep-log {
+            border: 2px solid #ce70f0;
+        }
+
+        .calorie-intake {
+            border: 2px solid #f25850;
+        }
     </style>
 </head>
 
