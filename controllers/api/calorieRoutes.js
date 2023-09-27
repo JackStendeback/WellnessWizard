@@ -6,7 +6,6 @@ router.post('/', authenticated, async (req, res) => {
     try {
         const newCalorie = await Calorie.create({
             ...req.body,
-            user_id: req.session.user_id,
         });
 
         res.status(200).json(newCalorie);
@@ -15,12 +14,30 @@ router.post('/', authenticated, async (req, res) => {
     }
 });
 
+router.put('/:id', authenticated, async (req, res) => {
+    try {
+        const calorieData = await Calorie.update({
+            where: {
+              id: req.params.id,
+            },
+        });
+
+        if (!calorieData) {
+            res.status(404).json({ message: "No calorie information found with this id" });
+            return;
+        }
+
+        res.status(200).json(calorieData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 router.delete('/:id', authenticated, async (req, res) => {
     try {
         const calorieData = await Calorie.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id,
             },
         });
 
