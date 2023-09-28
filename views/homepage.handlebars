@@ -1,6 +1,6 @@
 <body>
-    <nav class="navbar">
-        <div class="navbar-brand has-shadow">
+    <nav class="navbar has-shadow">
+        <div class="navbar-brand">
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
@@ -12,7 +12,7 @@
     <section class="section">
         <div class="container">
             <header class="heading">
-                <h1 class="title is-1 has-text-primary">Wellness Wizard</h1>
+                <h1 class="title is-1 has-text-primary" id="shadow">Wellness Wizard</h1>
                 <p class="subtitle has-text-grey-dark">"Your path to wellness, guided by wizards"</p>
             </header>
 
@@ -20,8 +20,7 @@
             <div class="wizard-container">
                 <img src="images/wizard.png" alt="Wizard Icon" class="wizard">
             </div>
-
-            <div class="columns">
+<div class="columns is-multiline">
                 <!-- User Info Card -->
                 <div class="column">
                     <div class="card user-info" onclick="toggleCardContent(this)">
@@ -79,9 +78,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="columns">
+            </div>
+            
+
+            <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
                 <div class="column">
                     <div class="card fitness-tracker" onclick="toggleCardContent(this)">
@@ -109,6 +110,7 @@
                                 <p>You slept for {{totalSleep}} hours last night.</p>
                                 <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                             </div>
+                        </div>
                     </div>
 
                     <!-- Calorie Intake Card -->
@@ -120,19 +122,20 @@
                                 </div>
                                 <h2 class="title">Calorie Intake</h2>
                                 <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                                <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
                                 
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
     </section>
 
     <div class="overlay" onclick="toggleOverlay()"></div>
 
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family:'Georgia, serif';
             overflow-x: hidden;
         }
 
