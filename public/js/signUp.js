@@ -1,3 +1,9 @@
+// document.getElementById('signup-button').addEventListener('click', function (event) {
+//     //  to navigate to the signup page //
+//     window.location.href = '/sign-up';
+// });
+
+
 const signupFormHandler = async (event) => {
     event.preventDefault();
 

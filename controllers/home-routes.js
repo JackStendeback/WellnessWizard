@@ -110,10 +110,10 @@ router.get('/sleep/:id',  /* authenticated, */ async (req, res) => {
 
 router.get('/sign-up', (req, res) => {
 
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
+    // if (req.session.logged_in) {
+    //     res.redirect('/');
+    //     return;
+    // }
 
     res.render('sign-up');
 });
