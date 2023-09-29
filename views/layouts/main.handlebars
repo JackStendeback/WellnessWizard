@@ -7,132 +7,279 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Georgia, serif';
-            background-color: #e4f4f2;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+    
+    body {
+        font-family: 'Georgia', serif;
+        background-color: #e4f4f2;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
-#shadow {
-    animation: mymove 5s infinite;
+    #shadow {
+        animation: mymove 5s infinite;
+    }
+
+    @keyframes mymove {
+        50% {text-shadow: 10px 20px 30px lightgreen;}
+    }
+
+    .heading {
+        background-color: #168cdb;
+        color: whitesmoke;
+        font-family: 'Georgia', serif;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        margin-top: -80px;
+    }
+
+    .container {
+        max-width: 1000px;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #bdecf3;
+        padding: 5px 0;
+        z-index: 1000;
+    }
+
+    .navbar-item {
+        color: darkslategrey;
+        margin: 0 15px;
+        text-decoration: none;
+        font-family: 'Georgia', serif;
+    }
+
+    .section {
+        margin-top: 60px;
+    }
+
+    .header {
+        background-color: #09daba;
+        color: white;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .columns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin: 20px 0;
+        justify-content: space-around;
+    }
+
+    .column {
+        flex: 1;
+        min-width: 150px;
+        box-sizing: border-box;
+    }
+
+    .card {
+        flex: 0 0 30%;
+        background-color: whitesmoke;
+        padding: 20px;
+        font-family: 'Georgia', serif;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        min-height: 300px; /* Added for consistent height */
+        display: flex;     /* Added for Flexbox */
+        flex-direction: column; /* Added for Flexbox */
+    }
+
+    .card-content {
+        flex: 1; /* Added for Flexbox */
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .input-group button {
+        width: 100%;
+        padding: 8px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .input-group button:hover {
+    background-color: #218838;
 }
 
-@keyframes mymove {
-    50% {text-shadow: 10px 20px 30px lightgreen;}
+.user-info,
+.magical-inspiration,
+.hydration-tracker,
+.fitness-tracker,
+.sleep-log,
+.calorie-intake {
+    border-width: 2px;
+    font-family: 'Fredericka the Great', cursive;
 }
-        .heading {
-            background-color: #168cdb;
-            color: whitesmoke;
-            font-family: 'Georgia, serif';
-            padding: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
-            margin-top: -80px;
-        }
+
+.user-info {
+    border-color: #96f463;
+    background-color: #E6F4E9;
+}
+
+.magical-inspiration {
+    border-color: #ea912b;
+    background-color: #FFF5E6;
+}
+
+.hydration-tracker {
+    border-color: #6ffbed;
+    background-color: #E6FAFF;
+}
+
+.fitness-tracker {
+    border-color: #f2f45c;
+    background-color: #FFFCE6;
+}
+
+.sleep-log {
+    border-color: #ce70f0;
+    background-color: #F5E6FA;
+}
+
+.calorie-intake {
+    border-color: #f25850;
+    background-color: #FFE6E6;
+}
+
+.workout-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.workout-item p,
+.workout-item span {
+    margin: 0;
+    padding: 0;
+}
+
+.workout-item span {
+    padding: 2px 8px;
+    border-radius: 5px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Updated Color Coding */
+.workout-item span[data-difficulty="Easy"] {
+    background-color: lightgreen;
+}
+
+.workout-item span[data-difficulty="Medium"] {
+    background-color: lightyellow;
+}
+
+.workout-item span[data-difficulty="Hard"] {
+    background-color: lightcoral;
+}
+
+.workout-item span[data-difficulty="Very Hard"] {
+    background-color: lightpink;
+}
+
+/* New Styles for Difficulty Buttons */
+.difficulty-buttons button {
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s; /* Add a transition for smooth color change */
+}
+
+.difficulty-buttons button[data-difficulty="Easy"] {
+    background-color: lightgreen; 
+}
+
+.difficulty-buttons button[data-difficulty="Medium"] {
+    background-color: lightyellow;
+}
+
+.difficulty-buttons button[data-difficulty="Hard"] {
+    background-color: lightcoral;
+}
+
+.difficulty-buttons button[data-difficulty="Very Hard"] {
+    background-color: lightpink;
+}
+
+.difficulty-buttons button[data-difficulty="Easy"]:hover {
+    background-color: #5dbf5d;
+}
+
+.difficulty-buttons button[data-difficulty="Medium"]:hover {
+    background-color: #e0e083;
+}
+
+.difficulty-buttons button[data-difficulty="Hard"]:hover {
+    background-color: #ff9b9b; 
+}
+
+.difficulty-buttons button[data-difficulty="Very Hard"]:hover {
+    background-color: #ff7b7b; 
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+/* Test */
 
 
-        .container {
-            max-width: 1000px;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: #bdecf3;
-            padding: 5px 0;
-            z-index: 1000;
-        }
-
-        .navbar-item {
-            color: darkslategrey;
-            margin: 0 15px;
-            text-decoration: none;
-            font-family: 'Georgia, serif';
-        }
-
-        .section {
-            margin-top: 60px;
-        }
-
-
-        .header {
-            background-color: #09daba;
-            color: white;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .columns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin: 20px 0;
-            justify-content: space-around;
-        }
-
-        .column {
-            flex: 1;
-            min-width: 150px;
-            box-sizing: border-box;
-        }
-
-        .card {
-            flex: 0 0 30%;
-            background-color: whitesmoke padding: 20px;
-            font-family: 'Georgia, serif';
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        /* Individual card styles */
-        .user-info {
-            border: 2px solid #96f463;
-            background-color: #E6F4E9;
-            font-family: 'Georgia, serif';
-        }
-
-        .magical-inspiration {
-            border: 2px solid #ea912b;
-            background-color: #FFF5E6;
-            font-family: 'Georgia, serif';
-        }
-
-        .hydration-tracker {
-            border: 2px solid #6ffbed;
-            background-color: #E6FAFF;
-            font-family: 'Georgia, serif';
-        }
-
-        .fitness-tracker {
-            border: 2px solid #f2f45c;
-            background-color: #FFFCE6;
-            font-family: 'Georgia, serif';
-        }
-
-        .sleep-log {
-            border: 2px solid #ce70f0;
-            background-color: #F5E6FA;
-            font-family: 'Georgia, serif';
-        }
-
-        .calorie-intake {
-            border: 2px solid #f25850;
-            background-color: #FFE6E6;
-            font-family: 'Georgia, serif';
-        }
-    </style>
+</style>
 </head>
 
 <body>
