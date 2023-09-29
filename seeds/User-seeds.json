@@ -2,7 +2,7 @@
   {
     "name": "John Doe",
     "email": "johndoe@example.com",
-    "password": "$2b$10$Tj.FP4GNTZekVOq7yz//Oe7lxuK61EAXQlFn6cqR1s6MT0EHs3R92",
+    "password": "password12345",
     "gender": "Male",
     "height": "7\"",
     "weight": "170 pounds"
@@ -10,7 +10,7 @@
   {
     "name": "Jane Smith",
     "email": "janesmith@example.com",
-    "password": "$2b$10$FHZbHzOMyVEQ.fy7TOF4IuGy5WwPT4INlZpPWGsc55wSOShcKSzZC",
+    "password": "password12345",
     "gender": "Female",
     "height": "5\"9'",
     "weight": "130 pounds"
@@ -18,7 +18,7 @@
   {
     "name": "Alice Johnson",
     "email": "alicejohnson@example.com",
-    "password": "$2b$10$M3A4MXAuv.Nw9GOrqVOe0.B0gawXjF04.zklp3NSY2Syf5Z9on.6.",
+    "password": "password12345",
     "gender": "Female",
     "height": "6\"2'",
     "weight": "140 pounds"
