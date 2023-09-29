@@ -49,7 +49,6 @@
                                 <li>Height: {{height}}</li>
                                 <li>Weight: {{weight}}</li>
                             </ul>
-                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -66,7 +65,6 @@
                             <h2 class="title">Magical Inspiration</h2>
                             <h4></h4>
                             <p><small>Date:</small></p>
-                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -96,7 +94,6 @@
                         class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
                 </div>
             </form>
-            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
         </div>
     </div>
 </div>
@@ -109,7 +106,7 @@
             <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
                 <div class="column">
-    <div class="card fitness-tracker" onclick="toggleCardContent(this)">
+    <div class="card fitness-tracker">
         <div class="card-content">
             <div class="icon-wrapper">
                 <span class="icon"><i class="fas fa-running fa-lg"></i></span>
@@ -130,15 +127,7 @@
                     <button style="background-color: orange;" onmouseover="this.style.backgroundColor='darkorange'" onmouseout="this.style.backgroundColor='orange'" onclick="addWorkout('Hard')">Hard</button>
                     <button style="background-color: red;" onmouseover="this.style.backgroundColor='darkred'" onmouseout="this.style.backgroundColor='red'" onclick="addWorkout('Very Hard')">Very Hard</button>
                 </div>
-                <div class="progress-bar">
-                    <div id="progress" class="progress"></div>
-                </div>
-                <br>
-                <button type="button" onclick="addWorkout()" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">
-                    Add Workout
-                </button>
             </div>
-            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
         </div>
     </div>
 </div>
@@ -152,7 +141,6 @@
                             </div>
                             <h2 class="title">Sleep Log</h2>
                             <p>You slept for {{totalSleep}} hours last night.</p>
-                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
@@ -307,17 +295,9 @@
         }
     </style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const closeButtons = document.querySelectorAll('.card .close-button');
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.stopPropagation();
-                closeCard(button);
-            });
-        });
-
         const quotes = [
             "Your limitation—it's only your imagination.",
             "Push yourself, because no one else is going to do it for you.",
@@ -348,122 +328,49 @@
         let displayDate = currentDate.toLocaleDateString();
         document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
         
-        
         window.workouts = [];
     });
 
-    window.toggleCardContent = function (card) {
-        const overlay = document.querySelector('.overlay');
-        card.classList.toggle('active');
-        overlay.classList.toggle('active');
+    window.addWorkout = function(difficulty) {
+        let workoutElement = document.getElementById('workout');
+        let setsElement = document.getElementById('sets');
+        let repsElement = document.getElementById('reps');
+
+        let workout = workoutElement.value.trim();
+        let sets = setsElement.value.trim();
+        let reps = repsElement.value.trim();
+
+        if (workout === "" || sets === "" || reps === "") {
+            return alert('Please fill out all fields');
+        }
+
+        const workoutsList = document.getElementById('workouts-list');
+
+        let workoutItem = document.createElement('div');
+        workoutItem.className = 'workout-item';
+        let difficultyColor = getDifficultyColor(difficulty);
+        workoutItem.innerHTML = `<p><strong>${workout}:</strong> ${sets} sets of ${reps} reps <span style="background-color: ${difficultyColor};">${difficulty}</span></p>`;
+        workoutsList.appendChild(workoutItem);
+
+        workoutElement.value = '';
+        setsElement.value = '';
+        repsElement.value = '';
     }
 
-    window.toggleOverlay = function () {
-        const activeCard = document.querySelector('.card.active');
-        if (!activeCard) {
-            const overlay = document.querySelector('.overlay');
-            overlay.classList.remove('active');
+    function getDifficultyColor(difficulty) {
+        switch (difficulty) {
+            case 'Easy':
+                return 'lightgreen';
+            case 'Medium':
+                return '#DAA520';
+            case 'Hard':
+                return 'orange';
+            case 'Very Hard':
+                return 'red';
+            default:
+                return 'white';
         }
     }
-
-    window.closeCard = function (button) {
-        const card = button.closest('.card');
-        const overlay = document.querySelector('.overlay');
-        card.classList.remove('active');
-        overlay.classList.remove('active');
-    }
-
-    window.addWorkout = function(difficulty) {
-    let workoutElement = document.getElementById('workout');
-    let setsElement = document.getElementById('sets');
-    let repsElement = document.getElementById('reps');
-
-    let workout = workoutElement.value.trim();
-    let sets = setsElement.value.trim();
-    let reps = repsElement.value.trim();
-
-    if (workout === "" || sets === "" || reps === "") {
-        return alert('Please fill out all fields');
-    }
-
-    const workoutsList = document.getElementById('workouts-list');
-
-    let workoutItem = document.createElement('div');
-    workoutItem.className = 'workout-item';
-    let difficultyColor;
-    switch(difficulty) {
-        case 'Easy':
-            difficultyColor = 'lightgreen';
-            break;
-        case 'Medium':
-            difficultyColor = '#DAA520';
-            break;
-        case 'Hard':
-            difficultyColor = 'orange';
-            break;
-        case 'Very Hard':
-            difficultyColor = 'red';
-            break;
-        default:
-            difficultyColor = 'white';
-    }
-    workoutItem.innerHTML = `<p><strong>${workout}:</strong> ${sets} sets of ${reps} reps <span style="background-color: ${difficultyColor};">${difficulty}</span></p>`;
-    workoutsList.appendChild(workoutItem);
-
-    
-    workoutElement.value = '';
-    setsElement.value = '';
-    repsElement.value = '';
-}
-
-    function updateWorkoutsList() {
-        let workoutsList = document.getElementById('workouts-list');
-        workoutsList.innerHTML = ''; 
-        
-        workouts.forEach(workoutObj => {
-            let workoutItem = document.createElement('div');
-            workoutItem.className = 'workout-item';
-            let difficultyColor;
-            let progressWidth;
-            switch(workoutObj.difficulty) {
-                case 'Easy':
-                    difficultyColor = 'lightgreen';
-                    progressWidth = '25%';
-                    break;
-                case 'Medium':
-                    difficultyColor = 'lightyellow';
-                    progressWidth = '50%';
-                    break;
-                case 'Hard':
-                    difficultyColor = 'lightcoral';
-                    progressWidth = '75%';
-                    break;
-                case 'Very Hard':
-                    difficultyColor = 'lightpink';
-                    progressWidth = '100%';
-                    break;
-                default:
-                    difficultyColor = 'white';
-                    progressWidth = '0%';
-            }
-            workoutItem.innerHTML = `<p><strong>${workoutObj.workout}:</strong> ${workoutObj.sets} sets of ${workoutObj.reps} reps <span style="background-color: ${difficultyColor}; width: ${progressWidth};">${workoutObj.difficulty}</span></p>`;
-            workoutsList.appendChild(workoutItem);
-        });
-    }
-
-    window.saveWorkouts = function() {
-        if(workouts.length === 0) return alert('No workouts to save');
-
-        workouts = [];
-        updateWorkoutsList();
-    }
-
-    function setDifficulty(difficulty, color, width) {
-    const progress = document.getElementById('progress');
-    progress.style.backgroundColor = color;
-    progress.style.width = width + '%';
-    
-}
 </script>
 
     <script src="/js/homepage.js"></script>
