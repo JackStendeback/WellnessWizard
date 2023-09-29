@@ -18,28 +18,24 @@ const users = await User.bulkCreate(userData, {
   for (const workout of workoutData) {
     await Workout.create({
       ...workout,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 
   for (const sleep of sleepData) {
     await Sleep.create({
       ...sleep,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 
   for (const calorie of calorieData) {
     await Calorie.create({
       ...calorie,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 
   for (const hydration of hydrationData) {
     await Hydration.create({
       ...hydration,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 

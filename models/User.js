@@ -35,6 +35,18 @@ User.init(
         len: [8],
       },
     },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    height: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    weight: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     hooks: {
