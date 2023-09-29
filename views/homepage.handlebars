@@ -5,15 +5,15 @@
         <div class="navbar-menu">
             <div class="navbar-end">
                 {{!-- <a class="navbar-item">Log-In</a> --}}
-                   <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="login.handlebars">Log-In</a>
-    {{/if}}
-  </nav>
-    <script src="../public/js/login.js"></script>
+                <nav>
+                    <a class="navbar-item" href="/">Home</a>
+                    {{#if loggedIn}}
+                    <button id="logout" class="btn-no-style">Logout</button>
+                    {{else}}
+                    <a class="navbar-item" href="/login">Log-In</a>
+                    {{/if}}
+                </nav>
+                <script src="../public/js/login.js"></script>
                 <a class="navbar-item">Sign-Up</a>
             </div>
         </div>
