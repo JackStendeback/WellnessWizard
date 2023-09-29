@@ -66,80 +66,120 @@
 
                 <!-- Hydration Tracker Card -->
                 <div class="column">
-                    <div class="card hydration-tracker" onclick="toggleCardContent(this)">
-                        <div class="card-content">
-                            <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-tint fa-lg"></i></span>
-                            </div>
-                            <h2 class="title">Hydration Tracker</h2>
-                            <p>You have consumed {{waterConsumption}} liters of water today.</p>
-                            <form action="/api/hydration" class="my-2" id="create-hydration">
-                                <label for="waterAmount" class="block mb-1">Total Water:</label>
-                                <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1"
-                                    class="block w-full p-1 mb-2 border rounded">
-                                <button type="submit"
-                                    class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
-                                <br>
-                                <label for="waterAmount" class="block mb-1">Target Water:</label>
-                                <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1"
-                                    class="block w-full p-1 mb-2 border rounded">
-                                <button type="submit"
-                                    class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
-
-                            </form>
-                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
-                        </div>
-                    </div>
+    <div class="card hydration-tracker" onclick="toggleCardContent(this)">
+        <div class="card-content">
+            <div class="icon-wrapper">
+                <span class="icon"><i class="fas fa-tint fa-lg"></i></span>
+            </div>
+            <h2 class="title">Hydration Tracker</h2>
+            <p>You have consumed {{waterConsumption}} liters of water today.</p>
+            <form action="/api/hydration" class="my-2" id="create-hydration">
+                <div class="input-group">
+                    <label for="waterAmount" class="block mb-1">Total Water:</label>
+                    <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1"
+                        class="block w-full p-1 mb-2 border rounded">
+                    <button type="submit"
+                        class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
                 </div>
+                <div class="input-group">
+                    <label for="waterAmount" class="block mb-1">Target Water:</label>
+                    <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1"
+                        class="block w-full p-1 mb-2 border rounded">
+                    <button type="submit"
+                        class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                </div>
+            </form>
+            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
+        </div>
+    </div>
+</div>
 
             </div>
 
 
             <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
-                <div class="column">
-                    <div class="card fitness-tracker" onclick="toggleCardContent(this)">
-                        <div class="card-content">
-                            <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-running fa-lg"></i></span>
-                            </div>
-                            <h2 class="title">Fitness Tracker</h2>
-                            {{#each workouts}}
-                            <p>{{this}}</p>
-                            {{/each}}
-                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
-                        </div>
-                    </div>
+               <div class="column">
+    <div class="card fitness-tracker" onclick="toggleCardContent(this)">
+        <div class="card-content">
+            <div class="icon-wrapper">
+                <span class="icon"><i class="fas fa-running fa-lg"></i></span>
+            </div>
+            <h2 class="title">Fitness Tracker</h2>
+            <div id="workouts-list">
+                <!-- Workouts will be appended here -->
+            </div>
+            <div class="input-group">
+                <label for="workout" class="block mb-1">Log Workout:</label>
+                <input type="text" id="workout" name="workout" class="block w-full p-1 mb-2 border rounded" placeholder="Workout">
+                <input type="number" id="sets" name="sets" class="block w-full p-1 mb-2 border rounded" placeholder="Sets">
+                <input type="number" id="reps" name="reps" class="block w-full p-1 mb-2 border rounded" placeholder="Reps">
+                <label for="difficulty" class="block mb-1">Difficulty:</label>
+                <div class="difficulty-buttons">
+                    <button style="background-color: lightgreen;" onmouseover="this.style.backgroundColor='green'" onmouseout="this.style.backgroundColor='lightgreen'" onclick="addWorkout('Easy')">Easy</button>
+<button style="background-color: #FFD700;" onmouseover="this.style.backgroundColor='#DAA520'" onmouseout="this.style.backgroundColor='#FFD700'" onclick="addWorkout('Medium')">Medium</button>
+<button style="background-color: lightcoral;" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='lightcoral'" onclick="addWorkout('Hard')">Hard</button>
+<button style="background-color: lightpink;" onmouseover="this.style.backgroundColor='darkred'" onmouseout="this.style.backgroundColor='lightpink'" onclick="addWorkout('Very Hard')">Very Hard</button>
                 </div>
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+                <br>
+                <button type="button" onclick="addWorkout()" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">
+                    Add Workout
+                </button>
+            </div>
+            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
+        </div>
+    </div>
+</div>
+
 
                 <!-- Sleep Log Card -->
                 <div class="column">
-                    <div class="card sleep-log" onclick="toggleCardContent(this)">
-                        <div class="card-content">
-                            <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
-                            </div>
-                            <h2 class="title">Sleep Log</h2>
-                            <p>You slept for {{totalSleep}} hours last night.</p>
-                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
-                        </div>
-                    </div>
+    <div class="card sleep-log" onclick="toggleCardContent(this)">
+        <div class="card-content">
+            <div class="icon-wrapper">
+                <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
+            </div>
+            <h2 class="title">Sleep Log</h2>
+            <p>You slept for {{totalSleep}} hours last night.</p>
+            <form action="/api/sleep" class="my-2" id="create-sleep">
+                <div class="input-group">
+                    <label for="sleepAmount" class="block mb-1">Log Sleep Hours:</label>
+                    <input type="number" id="sleepAmount" name="sleepAmount" min="0" step="0.1" class="block w-full p-1 mb-2 border rounded" placeholder="Enter sleep hours">
+                    <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Add Sleep</button>
                 </div>
+            </form>
+            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
+        </div>
+    </div>
+</div>
 
                 <!-- Calorie Intake Card -->
                 <div class="column">
-                    <div class="card calorie-intake" onclick="toggleCardContent(this)">
-                        <div class="card-content">
-                            <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
-                            </div>
-                            <h2 class="title">Calorie Intake</h2>
-                            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
-                            <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
-
-                        </div>
-                    </div>
+    <div class="card calorie-intake" onclick="toggleCardContent(this)">
+        <div class="card-content">
+            <div class="icon-wrapper">
+                <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
+            </div>
+            <h2 class="title">Calorie Intake</h2>
+            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+            <form action="/api/calorie" class="my-2" id="create-calorie">
+                <div class="input-group">
+                    <label for="calorieAmount" class="block mb-1">Log Calorie Intake:</label>
+                    <input type="number" id="calorieAmount" name="calorieAmount" min="0" step="1" class="block w-full p-1 mb-2 border rounded" placeholder="Enter calorie intake">
+                    <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Add Calorie</button>
                 </div>
+                <div class="input-group">
+                    <label for="targetCalorie" class="block mb-1">Target Calorie Intake:</label>
+                    <input type="number" id="targetCalorie" name="targetCalorie" min="0" step="1" class="block w-full p-1 mb-2 border rounded" placeholder="Enter target calorie">
+                    <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update Target</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </section>
@@ -276,68 +316,164 @@
         }
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const closeButtons = document.querySelectorAll('.card .close-button');
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    closeCard(button);
-                });
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const closeButtons = document.querySelectorAll('.card .close-button');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                closeCard(button);
             });
-
-            const quotes = [
-                "Your limitation—it's only your imagination.",
-                "Push yourself, because no one else is going to do it for you.",
-                "Sometimes later becomes never. Do it now.",
-                "Great things never come from comfort zones.",
-                "Dream it. Wish it. Do it.",
-                "Success doesn't just find you. You have to go out and get it.",
-                "The harder you work for something, the greater you'll feel when you achieve it.",
-                "Dream bigger. Do bigger.",
-                "Don't stop when you're tired. Stop when you're done.",
-                "Wake up with determination. Go to bed with satisfaction.",
-            ];
-
-            let startDate = Date.UTC(2023, 8, 21);
-            let currentDate = new Date();
-
-            let differenceInTime = currentDate.getTime() - startDate;
-            let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
-
-            if (differenceInDays < 0) {
-                console.error("Start date is in the future");
-                return;
-            }
-
-            let index = differenceInDays % quotes.length;
-            document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
-
-            let displayDate = currentDate.toLocaleDateString();
-            document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
         });
 
-        window.toggleCardContent = function (card) {
-            const overlay = document.querySelector('.overlay');
-            card.classList.toggle('active');
-            overlay.classList.toggle('active');
+        const quotes = [
+            "Your limitation—it's only your imagination.",
+            "Push yourself, because no one else is going to do it for you.",
+            "Sometimes later becomes never. Do it now.",
+            "Great things never come from comfort zones.",
+            "Dream it. Wish it. Do it.",
+            "Success doesn't just find you. You have to go out and get it.",
+            "The harder you work for something, the greater you'll feel when you achieve it.",
+            "Dream bigger. Do bigger.",
+            "Don't stop when you're tired. Stop when you're done.",
+            "Wake up with determination. Go to bed with satisfaction.",
+        ];
+
+        let startDate = Date.UTC(2023, 8, 21);
+        let currentDate = new Date();
+
+        let differenceInTime = currentDate.getTime() - startDate;
+        let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+
+        if (differenceInDays < 0) {
+            console.error("Start date is in the future");
+            return;
         }
 
-        window.toggleOverlay = function () {
-            const activeCard = document.querySelector('.card.active');
-            if (!activeCard) {
-                const overlay = document.querySelector('.overlay');
-                overlay.classList.remove('active');
-            }
-        }
+        let index = differenceInDays % quotes.length;
+        document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
 
-        window.closeCard = function (button) {
-            const card = button.closest('.card');
+        let displayDate = currentDate.toLocaleDateString();
+        document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
+        
+        
+        window.workouts = [];
+    });
+
+    window.toggleCardContent = function (card) {
+        const overlay = document.querySelector('.overlay');
+        card.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    window.toggleOverlay = function () {
+        const activeCard = document.querySelector('.card.active');
+        if (!activeCard) {
             const overlay = document.querySelector('.overlay');
-            card.classList.remove('active');
             overlay.classList.remove('active');
         }
-    </script>
+    }
+
+    window.closeCard = function (button) {
+        const card = button.closest('.card');
+        const overlay = document.querySelector('.overlay');
+        card.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+
+    window.addWorkout = function(difficulty) {
+    let workoutElement = document.getElementById('workout');
+    let setsElement = document.getElementById('sets');
+    let repsElement = document.getElementById('reps');
+
+    let workout = workoutElement.value.trim();
+    let sets = setsElement.value.trim();
+    let reps = repsElement.value.trim();
+
+    if (workout === "" || sets === "" || reps === "") {
+        return alert('Please fill out all fields');
+    }
+
+    const workoutsList = document.getElementById('workouts-list');
+
+    let workoutItem = document.createElement('div');
+    workoutItem.className = 'workout-item';
+    let difficultyColor;
+    switch(difficulty) {
+        case 'Easy':
+            difficultyColor = 'lightgreen';
+            break;
+        case 'Medium':
+            difficultyColor = '#DAA520';
+            break;
+        case 'Hard':
+            difficultyColor = 'orange';
+            break;
+        case 'Very Hard':
+            difficultyColor = 'red';
+            break;
+        default:
+            difficultyColor = 'white';
+    }
+    workoutItem.innerHTML = `<p><strong>${workout}:</strong> ${sets} sets of ${reps} reps <span style="background-color: ${difficultyColor};">${difficulty}</span></p>`;
+    workoutsList.appendChild(workoutItem);
+
+    
+    workoutElement.value = '';
+    setsElement.value = '';
+    repsElement.value = '';
+}
+
+    function updateWorkoutsList() {
+        let workoutsList = document.getElementById('workouts-list');
+        workoutsList.innerHTML = ''; 
+        
+        workouts.forEach(workoutObj => {
+            let workoutItem = document.createElement('div');
+            workoutItem.className = 'workout-item';
+            let difficultyColor;
+            let progressWidth;
+            switch(workoutObj.difficulty) {
+                case 'Easy':
+                    difficultyColor = 'lightgreen';
+                    progressWidth = '25%';
+                    break;
+                case 'Medium':
+                    difficultyColor = 'lightyellow';
+                    progressWidth = '50%';
+                    break;
+                case 'Hard':
+                    difficultyColor = 'lightcoral';
+                    progressWidth = '75%';
+                    break;
+                case 'Very Hard':
+                    difficultyColor = 'lightpink';
+                    progressWidth = '100%';
+                    break;
+                default:
+                    difficultyColor = 'white';
+                    progressWidth = '0%';
+            }
+            workoutItem.innerHTML = `<p><strong>${workoutObj.workout}:</strong> ${workoutObj.sets} sets of ${workoutObj.reps} reps <span style="background-color: ${difficultyColor}; width: ${progressWidth};">${workoutObj.difficulty}</span></p>`;
+            workoutsList.appendChild(workoutItem);
+        });
+    }
+
+    window.saveWorkouts = function() {
+        if(workouts.length === 0) return alert('No workouts to save');
+
+        workouts = [];
+        updateWorkoutsList();
+    }
+
+    function setDifficulty(difficulty, color, width) {
+    const progress = document.getElementById('progress');
+    progress.style.backgroundColor = color;
+    progress.style.width = width + '%';
+    
+}
+</script>
+
     <script src="/js/homepage.js"></script>
 </body>
