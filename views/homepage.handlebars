@@ -39,10 +39,10 @@
                             </div>
                             <h2 class="title">User Info</h2>
                             <ul class="list-none p-0 content">
-                                <li>Name: Emily</li>
-                                <li>Gender: Female</li>
-                                <li>Height: 7ft</li>
-                                <li>Weight: 130lb</li>
+                                <li>Name: {{name}}</li>
+                                <li>Gender: {{gender}}</li>
+                                <li>Height: {{height}}</li>
+                                <li>Weight: {{weight}}</li>
                             </ul>
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
@@ -72,7 +72,7 @@
                                 <span class="icon"><i class="fas fa-tint fa-lg"></i></span>
                             </div>
                             <h2 class="title">Hydration Tracker</h2>
-                            <p>You have consumed {{waterConsumption}} liters of water today.</p>
+                            <p>You have consumed {{totalDailyWater}} of water today.</p>
                             <form action="/api/hydration" class="my-2" id="create-hydration">
                                 <label for="waterAmount" class="block mb-1">Total Water:</label>
                                 <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1"
@@ -104,8 +104,9 @@
                                 <span class="icon"><i class="fas fa-running fa-lg"></i></span>
                             </div>
                             <h2 class="title">Fitness Tracker</h2>
-                            {{#each workouts}}
-                            <p>{{this}}</p>
+                            {{#each workouts as |workout|}}
+                            <p>{{workout.workout_name}}</p>
+                            <p>{{workout.notes}}</p>
                             {{/each}}
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
@@ -120,7 +121,7 @@
                                 <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
                             </div>
                             <h2 class="title">Sleep Log</h2>
-                            <p>You slept for {{totalSleep}} hours last night.</p>
+                            <p>You slept {{sleep_quality}} last night.</p>
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>

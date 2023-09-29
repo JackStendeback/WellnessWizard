@@ -7,21 +7,34 @@ const { Sleep, User, Workout, Hydration, Calorie } = require('../models');
 router.get('/', /* authenticated, */ async (req, res) => {
     try {
         const hydrationData = await Hydration.findOne({
-            where: {
-                user_id: 2,
-            },
+            where: { user_id: 2 },
+        });
+        const userData = await User.findOne({
+            where: { id: 2 },
+        });
+        const calorieData = await Calorie.findOne({
+            where: { user_id: 2 },
+        });
+        const workoutData = await Workout.findAll({
+            where: { user_id: 2 },
+        });
+        const sleepData = await Sleep.findOne({
+            where: { user_id: 2 },
         });
 
         const hydration = hydrationData.get({ plain: true });
+        const user = userData.get({ plain: true });
+        const calorie = calorieData.get({ plain: true });
+        const workouts = workoutData.map((workout) => workout.get({ plain: true }));
+        const sleep = sleepData.get({ plain: true });
 
         res.render('homepage', {
 
-            // waterConsumption: '2.5',
             ...hydration,
-            workouts: ['Running - 30 minutes', 'Weightlifting - 45 minutes'],
-            calorieIntake: '2000',
-            totalSleep: '8',
-            // can maybe replace everything above with just "user"
+            ...user,
+            ...calorie,
+            workouts,
+            ...sleep,
             // logged_in: req.session.logged_in
         });
     } catch (err) {
