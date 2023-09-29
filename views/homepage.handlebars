@@ -53,24 +53,24 @@
 
                 <!-- Magical Inspiration Card -->
                 <div class="column">
-                    <div class="card magical-inspiration" onclick="toggleCardContent(this)">
-                        <div class="card-content">
-                            <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-magic fa-lg"></i></span>
-                            </div>
-                            <h2 class="title">Magical Inspiration</h2>
-                            <h4></h4>
-                            <p><small>Date:</small></p>
-                        </div>
-                    </div>
-                </div>
+    <div class="card magical-inspiration" onclick="toggleCardContent(this)">
+        <div class="card-content" style="padding: 20px; text-align: center;">
+            <div class="icon-wrapper" style="margin-bottom: 10px;">
+                <span class="icon"><i class="fas fa-magic fa-lg" style="color: #673AB7;"></i></span>
+            </div>
+            <h2 class="title" style="margin-bottom: 20px; font-size: 24px; color: #333; font-weight: 700;">Magical Inspiration</h2>
+            <h4 style="font-size: 18px; color: #E91E63; margin-bottom: 20px; font-weight: 400;">"Your magical quote here."</h4>
+            <p style="font-size: 16px; color: #757575;"><small>Date: The magical date here</small></p>
+        </div>
+    </div>
+</div>
 
                 <!-- Hydration Tracker Card -->
                 <div class="column">
     <div class="card hydration-tracker" onclick="toggleCardContent(this)">
         <div class="card-content">
             <div class="icon-wrapper">
-                <span class="icon"><i class="fas fa-tint fa-lg"></i></span>
+                <span class="icon"><i class="fas fa-tint fa-lg" style="color: #336be3;"></i></span>
             </div>
             <h2 class="title">Hydration Tracker</h2>
             <p>You have consumed {{waterConsumption}} liters of water today.</p>
@@ -105,7 +105,7 @@
     <div class="card fitness-tracker">
         <div class="card-content">
             <div class="icon-wrapper">
-                <span class="icon"><i class="fas fa-running fa-lg"></i></span>
+                <span class="icon"><i class="fas fa-running fa-lg" style="color: #4CAF50;"></i></span>
             </div>
             <h2 class="title">Fitness Tracker</h2>
             <div id="workouts-list">
@@ -119,7 +119,7 @@
                 <label for="difficulty" class="block mb-1">Difficulty:</label>
                 <div class="difficulty-buttons">
                     <button style="background-color: lightgreen;" onmouseover="this.style.backgroundColor='green'" onmouseout="this.style.backgroundColor='lightgreen'" onclick="addWorkout('Easy')">Easy</button>
-                    <button style="background-color: #DAA520;" onmouseover="this.style.backgroundColor='#FFD700'" onmouseout="this.style.backgroundColor='#DAA520'" onclick="addWorkout('Medium')">Medium</button>
+                    <button style="background-color: #FFD700;" onmouseover="this.style.backgroundColor='#DAA520'" onmouseout="this.style.backgroundColor='#FFD700'" onclick="addWorkout('Medium')">Medium</button>
                     <button style="background-color: orange;" onmouseover="this.style.backgroundColor='darkorange'" onmouseout="this.style.backgroundColor='orange'" onclick="addWorkout('Hard')">Hard</button>
                     <button style="background-color: red;" onmouseover="this.style.backgroundColor='darkred'" onmouseout="this.style.backgroundColor='red'" onclick="addWorkout('Very Hard')">Very Hard</button>
                 </div>
@@ -129,24 +129,45 @@
 </div>
 
                 <!-- Sleep Log Card -->
-                <div class="column">
-                    <div class="card sleep-log" onclick="toggleCardContent(this)">
-                        <div class="card-content">
-                            <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
-                            </div>
-                            <h2 class="title">Sleep Log</h2>
-                            <p>You slept for {{totalSleep}} hours last night.</p>
-                        </div>
-                    </div>
+<div class="column">
+    <div class="card sleep-log" style="padding:15px; box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);">
+        <div class="card-content">
+            <div class="icon-wrapper" style="text-align:center;">
+                <span class="icon"><i class="fas fa-bed fa-lg" style="color: #3F51B5;"></i></span>
+            </div>
+            <h2 class="title" style="text-align:center;">Sleep Log</h2>
+            <p id="sleepInfo" style="text-align:center; font-size:16px;">You slept for {{totalSleep}} hours last night.</p>
+            <!-- Permanent Content -->
+            <div class="input-wrapper" style="padding:10px;">
+                <div style="margin-bottom:10px;">
+                    <label for="sleepHours" style="display:block; margin-bottom:5px;">Hours of Sleep:</label>
+                    <input type="number" id="sleepHours" name="sleepHours" min="0" style="width:60px; padding:5px;">
                 </div>
+
+                <div style="margin-bottom:20px;">
+                    <label for="sleepQuality" style="display:block; margin-bottom:5px;">How well did you sleep?</label>
+                    <select id="sleepQuality" name="sleepQuality" style="width:100%; padding:5px;">
+                        <option value="great">Slept Great</option>
+                        <option value="okay">It was okay</option>
+                        <option value="bad">Did not sleep well</option>
+                    </select>
+                </div>
+
+                <div style="display:flex; justify-content:space-between;">
+                    <button onclick="saveSleepLog()" style="width:48%; background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer;">Save</button>
+                    <button onclick="cancelSleepLog()" style="width:48%; background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer;">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Calorie Intake Card -->
                 <div class="column">
                     <div class="card calorie-intake" onclick="toggleCardContent(this)">
                         <div class="card-content">
                             <div class="icon-wrapper">
-                                <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
+                                <span class="icon"><i class="fas fa-apple-alt fa-lg" style="color: #FFC107;"></i></span>
                             </div>
                             <h2 class="title">Calorie Intake</h2>
                             <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
@@ -358,7 +379,7 @@
             case 'Easy':
                 return 'lightgreen';
             case 'Medium':
-                return '#DAA520';
+                return '#FFD700';
             case 'Hard':
                 return 'orange';
             case 'Very Hard':
@@ -367,6 +388,29 @@
                 return 'white';
         }
     }
+function saveSleepLog() {
+    var hours = document.getElementById('sleepHours').value;
+    var quality = document.getElementById('sleepQuality').value;
+
+    if (hours === "" || quality === "") {
+        // You can replace this alert with a more user-friendly message on the screen if you want.
+        alert("Please enter all details.");
+        return;
+    }
+
+    // Update the sleepInfo paragraph
+    var qualityText = (quality === 'great') ? 'Slept Great' : (quality === 'okay') ? 'It was okay' : 'Did not sleep well';
+    document.getElementById('sleepInfo').innerHTML = "<strong>You slept for " + hours + " hours last night. Quality: " + qualityText + "</strong>";
+
+    // Optionally: Save the sleep log e.g., send to server, or store in local storage.
+}
+
+function cancelSleepLog() {
+    // Clear the input
+    document.getElementById('sleepHours').value = "";
+    document.getElementById('sleepQuality').value = "great";
+}
+
 </script>
 
     <script src="/js/homepage.js"></script>
