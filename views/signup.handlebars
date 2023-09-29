@@ -1,21 +1,45 @@
-<div class="login-card">
+{{!-- <div class="login-card">
     <h2 class="page-title">Signup</h2>
     <form class="form signup-form">
       <div class="form-group">
         <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="username-signup" required>
+        <input class="form-input" type="text" id="username-signup" required />
       </div>
       <div class="form-group">
         <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup"required />
+        <input class="form-input" type="text" id="email-signup" required />
       </div>
       <div class="form-group">
         <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
+        <input class="form-input" type="password" id="password-signup" required />
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">signup</button>
       </div>
     </form>
   </div>
-</div>
+</div> --}}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form id="signup-form" method="POST" action="/signup">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+        
+        <button class="btn btn-primary"type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
