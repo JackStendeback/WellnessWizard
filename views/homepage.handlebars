@@ -18,6 +18,7 @@
             </div>
         </div>
     </nav>
+    {{!-- {{#if loggedIn}} --}}
     <section class="section">
         <div class="container">
             <header class="heading">
@@ -48,6 +49,37 @@
                         </div>
                     </div>
                 </div>
+                {{!-- user BMR (basal metabolic rate) equation for target daily calories for user input data --}}
+                <script>
+                    var bmrTemplateSource = document.getElementById("user-info").innerHTML;
+                    var bmrTemplate = Handlebars.compile(bmrTemplateSource);
+
+                    document.getElementById("--------").addEventListener("click", function () {
+                        var gender = document.getElementById("gender").value;
+                        var weight = parseFloat(document.getElementById("weight").value);
+                        var height = parseFloat(document.getElementById("height").value);
+                        var age = parseInt(document.getElementById("age").value);
+                        var activityLevel = parseFloat(document.getElementById("activity-level").value);
+
+                        if (isNaN(weight) || isNaN(height) || isNaN(age) || isNaN(activityLevel) || height <= 0 || weight <= 0 || age <= 0) {
+                            alert("Please enter valid values.");
+                            return;
+                        }
+
+                        var bmr;
+
+                        if (gender === "male") {
+                            bmr = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)).toFixed(2);
+                        } else if (gender === "female") {
+                            bmr = (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)).toFixed(2);
+                        }
+
+                        var dailyCalories = (bmr * activityLevel).toFixed(2);
+
+                        var resultHtml = bmrTemplate({ bmr: bmr, dailyCalories: dailyCalories });
+                        document.getElementById("calorieAmount").innerHTML = resultHtml;
+                    });
+                </script>
 
                 <!-- Magical Inspiration Card -->
                 <div class="column">
@@ -92,6 +124,32 @@
                     </div>
                 </div>
 
+                {{!-- user hydration equation for target hydration from user input data --}}
+                <script>
+                    var hydrationTemplateSource = document.getElementById("hydration-tracker").innerHTML;
+                    var hydrationTemplate = Handlebars.compile(hydrationTemplateSource);
+
+                    document.getElementById("------------").addEventListener("click", function () {
+                        var gender = document.getElementById("gender").value;
+                        var weight = parseFloat(document.getElementById("weight").value);
+
+                        if (isNaN(weight) || weight <= 0) {
+                            alert("Please enter a valid weight.");
+                            return;
+                        }
+
+                        var idealHydration;
+
+                        if (gender === "male") {
+                            idealHydration = (weight * 35 / 1000).toFixed(2);
+                        } else if (gender === "female") {
+                            idealHydration = (weight * 31 / 1000).toFixed(2);
+                        }
+
+                        var resultHtml = hydrationTemplate({ idealHydration: idealHydration });
+                        document.getElementById("targetDailyWater").innerHTML = resultHtml;
+                    });
+                </script>
             </div>
 
 
