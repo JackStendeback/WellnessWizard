@@ -18,6 +18,7 @@
             </div>
         </div>
     </nav>
+    {{!-- {{#if loggedIn}} --}}
     <section class="section">
         <div class="container">
             <header class="heading">
@@ -39,15 +40,46 @@
                             </div>
                             <h2 class="title">User Info</h2>
                             <ul class="list-none p-0 content">
-                                <li>Name: Emily</li>
-                                <li>Gender: Female</li>
-                                <li>Height: 7ft</li>
-                                <li>Weight: 130lb</li>
+                                <li>Name: {{name}}</li>
+                                <li>Gender: {{gender}}</li>
+                                <li>Height: {{height}}</li>
+                                <li>Weight: {{weight}}</li>
                             </ul>
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
+                {{!-- user BMR (basal metabolic rate) equation for target daily calories for user input data --}}
+                <script>
+                    var bmrTemplateSource = document.getElementById("user-info").innerHTML;
+                    var bmrTemplate = Handlebars.compile(bmrTemplateSource);
+
+                    document.getElementById("--------").addEventListener("click", function () {
+                        var gender = document.getElementById("gender").value;
+                        var weight = parseFloat(document.getElementById("weight").value);
+                        var height = parseFloat(document.getElementById("height").value);
+                        var age = parseInt(document.getElementById("age").value);
+                        var activityLevel = parseFloat(document.getElementById("activity-level").value);
+
+                        if (isNaN(weight) || isNaN(height) || isNaN(age) || isNaN(activityLevel) || height <= 0 || weight <= 0 || age <= 0) {
+                            alert("Please enter valid values.");
+                            return;
+                        }
+
+                        var bmr;
+
+                        if (gender === "male") {
+                            bmr = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)).toFixed(2);
+                        } else if (gender === "female") {
+                            bmr = (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)).toFixed(2);
+                        }
+
+                        var dailyCalories = (bmr * activityLevel).toFixed(2);
+
+                        var resultHtml = bmrTemplate({ bmr: bmr, dailyCalories: dailyCalories });
+                        document.getElementById("calorieAmount").innerHTML = resultHtml;
+                    });
+                </script>
 
                 <!-- Magical Inspiration Card -->
                 <div class="column">
@@ -72,7 +104,7 @@
                                 <span class="icon"><i class="fas fa-tint fa-lg"></i></span>
                             </div>
                             <h2 class="title">Hydration Tracker</h2>
-                            <p>You have consumed {{waterConsumption}} liters of water today.</p>
+                            <p>You have consumed {{totalDailyWater}} of water today.</p>
                             <form action="/api/hydration" class="my-2" id="create-hydration">
                                 <label for="waterAmount" class="block mb-1">Total Water:</label>
                                 <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1"
@@ -92,6 +124,32 @@
                     </div>
                 </div>
 
+                {{!-- user hydration equation for target hydration from user input data --}}
+                <script>
+                    var hydrationTemplateSource = document.getElementById("hydration-tracker").innerHTML;
+                    var hydrationTemplate = Handlebars.compile(hydrationTemplateSource);
+
+                    document.getElementById("------------").addEventListener("click", function () {
+                        var gender = document.getElementById("gender").value;
+                        var weight = parseFloat(document.getElementById("weight").value);
+
+                        if (isNaN(weight) || weight <= 0) {
+                            alert("Please enter a valid weight.");
+                            return;
+                        }
+
+                        var idealHydration;
+
+                        if (gender === "male") {
+                            idealHydration = (weight * 35 / 1000).toFixed(2);
+                        } else if (gender === "female") {
+                            idealHydration = (weight * 31 / 1000).toFixed(2);
+                        }
+
+                        var resultHtml = hydrationTemplate({ idealHydration: idealHydration });
+                        document.getElementById("targetDailyWater").innerHTML = resultHtml;
+                    });
+                </script>
             </div>
 
 
@@ -104,8 +162,9 @@
                                 <span class="icon"><i class="fas fa-running fa-lg"></i></span>
                             </div>
                             <h2 class="title">Fitness Tracker</h2>
-                            {{#each workouts}}
-                            <p>{{this}}</p>
+                            {{#each workouts as |workout|}}
+                            <p>{{workout.workout_name}}</p>
+                            <p>{{workout.notes}}</p>
                             {{/each}}
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
@@ -120,7 +179,7 @@
                                 <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
                             </div>
                             <h2 class="title">Sleep Log</h2>
-                            <p>You slept for {{totalSleep}} hours last night.</p>
+                            <p>You slept {{sleep_quality}} last night.</p>
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
@@ -134,7 +193,7 @@
                                 <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
                             </div>
                             <h2 class="title">Calorie Intake</h2>
-                            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                            <p>You have consumed {{totalDailyCalories}}/{{targetDailyCalories}} calories today.</p>
                             <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
 
                         </div>
