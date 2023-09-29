@@ -1,6 +1,6 @@
 [
   {
-    "name": "John Doe",
+    "username": "John Doe",
     "email": "johndoe@example.com",
     "password": "password12345",
     "gender": "Male",
@@ -8,7 +8,7 @@
     "weight": "170 pounds"
   },
   {
-    "name": "Jane Smith",
+    "username": "Jane Smith",
     "email": "janesmith@example.com",
     "password": "password12345",
     "gender": "Female",
@@ -16,7 +16,7 @@
     "weight": "130 pounds"
   },
   {
-    "name": "Alice Johnson",
+    "username": "Alice Johnson",
     "email": "alicejohnson@example.com",
     "password": "password12345",
     "gender": "Female",
