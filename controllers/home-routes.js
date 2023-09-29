@@ -127,12 +127,12 @@ router.get('/sign-up', (req, res) => {
     res.render('sign-up');
 });
 
-router.get('/login', (req, res) => {
-
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
+router.get('/login', (req,res) => {
+    
+    // if (req.session.logged_in) {
+    //     res.redirect('/');
+    //     return;
+    // }
 
     res.render('login');
 });

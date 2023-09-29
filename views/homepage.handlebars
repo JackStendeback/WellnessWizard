@@ -4,7 +4,16 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item">Log-In</a>
+                {{!-- <a class="navbar-item">Log-In</a> --}}
+                <nav>
+                    <a class="navbar-item" href="/">Home</a>
+                    {{#if loggedIn}}
+                    <button id="logout" class="btn-no-style">Logout</button>
+                    {{else}}
+                    <a class="navbar-item" href="/login">Log-In</a>
+                    {{/if}}
+                </nav>
+                <script src="../public/js/login.js"></script>
                 <a class="navbar-item">Sign-Up</a>
             </div>
         </div>
@@ -20,7 +29,7 @@
             <div class="wizard-container">
                 <img src="images/wizard.png" alt="Wizard Icon" class="wizard">
             </div>
-<div class="columns is-multiline">
+            <div class="columns is-multiline">
                 <!-- User Info Card -->
                 <div class="column">
                     <div class="card user-info" onclick="toggleCardContent(this)">
@@ -66,12 +75,16 @@
                             <p>You have consumed {{waterConsumption}} liters of water today.</p>
                             <form action="/api/hydration" class="my-2" id="create-hydration">
                                 <label for="waterAmount" class="block mb-1">Total Water:</label>
-                                <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1" class="block w-full p-1 mb-2 border rounded">
-                                <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                                <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1"
+                                    class="block w-full p-1 mb-2 border rounded">
+                                <button type="submit"
+                                    class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
                                 <br>
                                 <label for="waterAmount" class="block mb-1">Target Water:</label>
-                                <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1" class="block w-full p-1 mb-2 border rounded">
-                                <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                                <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1"
+                                    class="block w-full p-1 mb-2 border rounded">
+                                <button type="submit"
+                                    class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
 
                             </form>
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
@@ -80,7 +93,7 @@
                 </div>
 
             </div>
-            
+
 
             <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
@@ -102,32 +115,32 @@
                 <!-- Sleep Log Card -->
                 <div class="column">
                     <div class="card sleep-log" onclick="toggleCardContent(this)">
-                            <div class="card-content">
-                                <div class="icon-wrapper">
-                                    <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
-                                </div>
-                                <h2 class="title">Sleep Log</h2>
-                                <p>You slept for {{totalSleep}} hours last night.</p>
-                                <div class="close-button" onclick="closeCard(this)">&#10005;</div>
+                        <div class="card-content">
+                            <div class="icon-wrapper">
+                                <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Calorie Intake Card -->
-                    <div class="column">
-                        <div class="card calorie-intake" onclick="toggleCardContent(this)">
-                            <div class="card-content">
-                                <div class="icon-wrapper">
-                                    <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
-                                </div>
-                                <h2 class="title">Calorie Intake</h2>
-                                <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
-                                <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
-                                
-                            </div>
+                            <h2 class="title">Sleep Log</h2>
+                            <p>You slept for {{totalSleep}} hours last night.</p>
+                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Calorie Intake Card -->
+                <div class="column">
+                    <div class="card calorie-intake" onclick="toggleCardContent(this)">
+                        <div class="card-content">
+                            <div class="icon-wrapper">
+                                <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
+                            </div>
+                            <h2 class="title">Calorie Intake</h2>
+                            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                            <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -135,7 +148,7 @@
 
     <style>
         body {
-            font-family:'Georgia, serif';
+            font-family: 'Georgia, serif';
             overflow-x: hidden;
         }
 
@@ -151,12 +164,14 @@
             right: 10px;
             font-size: 20px;
             cursor: pointer;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
 
-.card.active .close-btn {
-    display: block; /* Display when card is active */
-}
+        .card.active .close-btn {
+            display: block;
+            /* Display when card is active */
+        }
 
 
         .heading {
@@ -262,67 +277,67 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const closeButtons = document.querySelectorAll('.card .close-button');
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.stopPropagation();
-                closeCard(button);
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const closeButtons = document.querySelectorAll('.card .close-button');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeCard(button);
+                });
             });
+
+            const quotes = [
+                "Your limitation—it's only your imagination.",
+                "Push yourself, because no one else is going to do it for you.",
+                "Sometimes later becomes never. Do it now.",
+                "Great things never come from comfort zones.",
+                "Dream it. Wish it. Do it.",
+                "Success doesn't just find you. You have to go out and get it.",
+                "The harder you work for something, the greater you'll feel when you achieve it.",
+                "Dream bigger. Do bigger.",
+                "Don't stop when you're tired. Stop when you're done.",
+                "Wake up with determination. Go to bed with satisfaction.",
+            ];
+
+            let startDate = Date.UTC(2023, 8, 21);
+            let currentDate = new Date();
+
+            let differenceInTime = currentDate.getTime() - startDate;
+            let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+
+            if (differenceInDays < 0) {
+                console.error("Start date is in the future");
+                return;
+            }
+
+            let index = differenceInDays % quotes.length;
+            document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
+
+            let displayDate = currentDate.toLocaleDateString();
+            document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
         });
 
-        const quotes = [
-            "Your limitation—it's only your imagination.",
-            "Push yourself, because no one else is going to do it for you.",
-            "Sometimes later becomes never. Do it now.",
-            "Great things never come from comfort zones.",
-            "Dream it. Wish it. Do it.",
-            "Success doesn't just find you. You have to go out and get it.",
-            "The harder you work for something, the greater you'll feel when you achieve it.",
-            "Dream bigger. Do bigger.",
-            "Don't stop when you're tired. Stop when you're done.",
-            "Wake up with determination. Go to bed with satisfaction.",
-        ];
-
-        let startDate = Date.UTC(2023, 8, 21);
-        let currentDate = new Date();
-
-        let differenceInTime = currentDate.getTime() - startDate;
-        let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
-
-        if (differenceInDays < 0) {
-            console.error("Start date is in the future");
-            return;
+        window.toggleCardContent = function (card) {
+            const overlay = document.querySelector('.overlay');
+            card.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
 
-        let index = differenceInDays % quotes.length;
-        document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
+        window.toggleOverlay = function () {
+            const activeCard = document.querySelector('.card.active');
+            if (!activeCard) {
+                const overlay = document.querySelector('.overlay');
+                overlay.classList.remove('active');
+            }
+        }
 
-        let displayDate = currentDate.toLocaleDateString();
-        document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
-    });
-
-    window.toggleCardContent = function (card) {
-        const overlay = document.querySelector('.overlay');
-        card.classList.toggle('active');
-        overlay.classList.toggle('active');
-    }
-
-    window.toggleOverlay = function () {
-        const activeCard = document.querySelector('.card.active');
-        if (!activeCard) {
+        window.closeCard = function (button) {
+            const card = button.closest('.card');
             const overlay = document.querySelector('.overlay');
+            card.classList.remove('active');
             overlay.classList.remove('active');
         }
-    }
-
-    window.closeCard = function (button) {
-        const card = button.closest('.card');
-        const overlay = document.querySelector('.overlay');
-        card.classList.remove('active');
-        overlay.classList.remove('active');
-    }
-</script>
-<script src="/js/homepage.js"></script>
+    </script>
+    <script src="/js/homepage.js"></script>
 </body>
