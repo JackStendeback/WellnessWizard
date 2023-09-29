@@ -5,10 +5,19 @@ const { Sleep, User, Workout, Hydration, Calorie } = require('../models');
 
 // GET request for finding all
 router.get('/', /* authenticated, */ async (req, res) => {
-    try {        
+    try {
+        const hydrationData = await Hydration.findOne({
+            where: {
+                user_id: 2,
+            },
+        });
+
+        const hydration = hydrationData.get({ plain: true });
+
         res.render('homepage', {
 
-            waterConsumption: '2.5',
+            // waterConsumption: '2.5',
+            ...hydration,
             workouts: ['Running - 30 minutes', 'Weightlifting - 45 minutes'],
             calorieIntake: '2000',
             totalSleep: '8',
@@ -118,8 +127,8 @@ router.get('/sign-up', (req, res) => {
     res.render('sign-up');
 });
 
-router.get('/login', (req,res) => {
-    
+router.get('/login', (req, res) => {
+
     if (req.session.logged_in) {
         res.redirect('/');
         return;
