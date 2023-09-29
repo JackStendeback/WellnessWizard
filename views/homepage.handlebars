@@ -1,12 +1,16 @@
 <body>
     <nav class="navbar has-shadow">
-        <div class="navbar-brand">
+        <div class="navbar-brand"> <a class="navbar-item" href="/"><span class="icon">
+    <i class="fas fa-home"></i>
+  </span>
+  <span>Home</span>
+</span></a>
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
                 {{!-- <a class="navbar-item">Log-In</a> --}}
                 <nav>
-                    <a class="navbar-item" href="/">Home</a>
+                    {{!-- <a class="navbar-item" href="/">Home</a> --}}
                     {{#if loggedIn}}
                     <button id="logout" class="btn-no-style">Logout</button>
                     {{else}}
@@ -14,7 +18,7 @@
                     {{/if}}
                 </nav>
                 <script src="../public/js/login.js"></script>
-                <a class="navbar-item">Sign-Up</a>
+                <a class="navbar-item" href="/sign-up" id="signup-button">Sign-Up</a>
             </div>
         </div>
     </nav>
