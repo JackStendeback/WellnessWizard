@@ -18,6 +18,7 @@
             </div>
         </div>
     </nav>
+    {{!-- {{#if loggedIn}} --}}
     <section class="section">
         <div class="container">
             <header class="heading">
@@ -39,15 +40,17 @@
                             </div>
                             <h2 class="title">User Info</h2>
                             <ul class="list-none p-0 content">
-                                <li>Name: Emily</li>
-                                <li>Gender: Female</li>
-                                <li>Height: 7ft</li>
-                                <li>Weight: 130lb</li>
+                                <li>Name: {{name}}</li>
+                                <li>Gender: {{gender}}</li>
+                                <li>Height: {{height}}</li>
+                                <li>Weight: {{weight}}</li>
                             </ul>
                             <div class="close-button" onclick="closeCard(this)">&#10005;</div>
                         </div>
                     </div>
                 </div>
+                {{!-- user BMR (basal metabolic rate) equation for target daily calories for user input data --}}
+               
 
                 <!-- Magical Inspiration Card -->
                 <div class="column">
@@ -94,12 +97,14 @@
     </div>
 </div>
 
+                {{!-- user hydration equation for target hydration from user input data --}}
+      
             </div>
 
 
             <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
-               <div class="column">
+                <div class="column">
     <div class="card fitness-tracker" onclick="toggleCardContent(this)">
         <div class="card-content">
             <div class="icon-wrapper">
@@ -117,9 +122,9 @@
                 <label for="difficulty" class="block mb-1">Difficulty:</label>
                 <div class="difficulty-buttons">
                     <button style="background-color: lightgreen;" onmouseover="this.style.backgroundColor='green'" onmouseout="this.style.backgroundColor='lightgreen'" onclick="addWorkout('Easy')">Easy</button>
-<button style="background-color: #FFD700;" onmouseover="this.style.backgroundColor='#DAA520'" onmouseout="this.style.backgroundColor='#FFD700'" onclick="addWorkout('Medium')">Medium</button>
-<button style="background-color: lightcoral;" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='lightcoral'" onclick="addWorkout('Hard')">Hard</button>
-<button style="background-color: lightpink;" onmouseover="this.style.backgroundColor='darkred'" onmouseout="this.style.backgroundColor='lightpink'" onclick="addWorkout('Very Hard')">Very Hard</button>
+                    <button style="background-color: #DAA520;" onmouseover="this.style.backgroundColor='#FFD700'" onmouseout="this.style.backgroundColor='#DAA520'" onclick="addWorkout('Medium')">Medium</button>
+                    <button style="background-color: orange;" onmouseover="this.style.backgroundColor='darkorange'" onmouseout="this.style.backgroundColor='orange'" onclick="addWorkout('Hard')">Hard</button>
+                    <button style="background-color: red;" onmouseover="this.style.backgroundColor='darkred'" onmouseout="this.style.backgroundColor='red'" onclick="addWorkout('Very Hard')">Very Hard</button>
                 </div>
                 <div class="progress-bar">
                     <div id="progress" class="progress"></div>
@@ -134,52 +139,34 @@
     </div>
 </div>
 
-
                 <!-- Sleep Log Card -->
                 <div class="column">
-    <div class="card sleep-log" onclick="toggleCardContent(this)">
-        <div class="card-content">
-            <div class="icon-wrapper">
-                <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
-            </div>
-            <h2 class="title">Sleep Log</h2>
-            <p>You slept for {{totalSleep}} hours last night.</p>
-            <form action="/api/sleep" class="my-2" id="create-sleep">
-                <div class="input-group">
-                    <label for="sleepAmount" class="block mb-1">Log Sleep Hours:</label>
-                    <input type="number" id="sleepAmount" name="sleepAmount" min="0" step="0.1" class="block w-full p-1 mb-2 border rounded" placeholder="Enter sleep hours">
-                    <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Add Sleep</button>
+                    <div class="card sleep-log" onclick="toggleCardContent(this)">
+                        <div class="card-content">
+                            <div class="icon-wrapper">
+                                <span class="icon"><i class="fas fa-bed fa-lg"></i></span>
+                            </div>
+                            <h2 class="title">Sleep Log</h2>
+                            <p>You slept for {{totalSleep}} hours last night.</p>
+                            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-            <div class="close-button" onclick="closeCard(this)">&#10005;</div>
-        </div>
-    </div>
-</div>
 
                 <!-- Calorie Intake Card -->
                 <div class="column">
-    <div class="card calorie-intake" onclick="toggleCardContent(this)">
-        <div class="card-content">
-            <div class="icon-wrapper">
-                <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
-            </div>
-            <h2 class="title">Calorie Intake</h2>
-            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
-            <form action="/api/calorie" class="my-2" id="create-calorie">
-                <div class="input-group">
-                    <label for="calorieAmount" class="block mb-1">Log Calorie Intake:</label>
-                    <input type="number" id="calorieAmount" name="calorieAmount" min="0" step="1" class="block w-full p-1 mb-2 border rounded" placeholder="Enter calorie intake">
-                    <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Add Calorie</button>
+                    <div class="card calorie-intake" onclick="toggleCardContent(this)">
+                        <div class="card-content">
+                            <div class="icon-wrapper">
+                                <span class="icon"><i class="fas fa-apple-alt fa-lg"></i></span>
+                            </div>
+                            <h2 class="title">Calorie Intake</h2>
+                            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                            <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="targetCalorie" class="block mb-1">Target Calorie Intake:</label>
-                    <input type="number" id="targetCalorie" name="targetCalorie" min="0" step="1" class="block w-full p-1 mb-2 border rounded" placeholder="Enter target calorie">
-                    <button type="submit" class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update Target</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </section>
