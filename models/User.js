@@ -47,6 +47,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    age: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     hooks: {

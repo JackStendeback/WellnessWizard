@@ -3,6 +3,7 @@
     "username": "John Doe",
     "email": "johndoe@example.com",
     "password": "password12345",
+    "age": "32",
     "gender": "Male",
     "height": "7\"",
     "weight": "170 pounds"
@@ -13,7 +14,8 @@
     "password": "password12345",
     "gender": "Female",
     "height": "5\"9'",
-    "weight": "130 pounds"
+    "weight": "130 pounds",
+    "age": "25"
   },
   {
     "username": "Alice Johnson",
@@ -21,6 +23,7 @@
     "password": "password12345",
     "gender": "Female",
     "height": "6\"2'",
-    "weight": "140 pounds"
+    "weight": "140 pounds",
+    "age": "28"
   }
 ]

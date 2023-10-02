@@ -1,20 +1,20 @@
 <body>
     <nav class="navbar has-shadow">
         <div class="navbar-brand"> <a class="navbar-item" href="/"><span class="icon">
-    <i class="fas fa-home"></i>
-  </span>
-  <span>Home</span>
-</span></a>
+                    <i class="fas fa-home"></i>
+                </span>
+                <span>Home</span>
+                </span></a>
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
-               
-                    {{#if loggedIn}}
-                    <button id="logout" class="btn-no-style">Logout</button>
-                    {{else}}
-                    <a class="navbar-item" href="/login">Log-In</a>
-                    {{/if}}
-               
+
+                {{#if loggedIn}}
+                <button id="logout" class="btn-no-style">Logout</button>
+                {{else}}
+                <a class="navbar-item" href="/login">Log-In</a>
+                {{/if}}
+
                 <script src="../public/js/login.js"></script>
                 <a class="navbar-item" href="/sign-up" id="signup-button">Sign-Up</a>
             </div>
@@ -42,127 +42,208 @@
                             </div>
                             <h2 class="title">User Info</h2>
                             <ul class="list-none p-0 content">
-                                <li>Name: {{name}}</li>
-                                <li>Gender: {{gender}}</li>
-                                <li>Height: {{height}}</li>
-                                <li>Weight: {{weight}}</li>
+                                <li id="name">Name: {{username}}</li>
+                                <li id="gender">Gender: {{gender}}</li>
+                                <li id="height">Height: {{height}}</li>
+                                <li id="weight">Weight: {{weight}}</li>
+                                <li id="age">Age: {{age}}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                {{!-- user BMR (basal metabolic rate) equation for target daily calories for user input data --}}
-               
 
                 <!-- Magical Inspiration Card -->
                 <div class="column">
-    <div class="card magical-inspiration" onclick="toggleCardContent(this)">
-        <div class="card-content" style="padding: 20px; text-align: center;">
-            <div class="icon-wrapper" style="margin-bottom: 10px;">
-                <span class="icon"><i class="fas fa-magic fa-lg" style="color: #673AB7;"></i></span>
-            </div>
-            <h2 class="title" style="margin-bottom: 20px; font-size: 24px; color: #333; font-weight: 700;">Magical Inspiration</h2>
-            <h4 style="font-size: 18px; color: #E91E63; margin-bottom: 20px; font-weight: 400;">"Your magical quote here."</h4>
-            <p style="font-size: 16px; color: #757575;"><small>Date: The magical date here</small></p>
-        </div>
-    </div>
-</div>
+                    <div class="card magical-inspiration" onclick="toggleCardContent(this)">
+                        <div class="card-content" style="padding: 20px; text-align: center;">
+                            <div class="icon-wrapper" style="margin-bottom: 10px;">
+                                <span class="icon"><i class="fas fa-magic fa-lg" style="color: #673AB7;"></i></span>
+                            </div>
+                            <h2 class="title"
+                                style="margin-bottom: 20px; font-size: 24px; color: #333; font-weight: 700;">Magical
+                                Inspiration</h2>
+                            <h4 style="font-size: 18px; color: #E91E63; margin-bottom: 20px; font-weight: 400;">"Your
+                                magical quote here."</h4>
+                            <p style="font-size: 16px; color: #757575;"><small>Date: The magical date here</small></p>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Hydration Tracker Card -->
                 <div class="column">
-    <div class="card hydration-tracker" onclick="toggleCardContent(this)">
-        <div class="card-content">
-            <div class="icon-wrapper">
-                <span class="icon"><i class="fas fa-tint fa-lg" style="color: #336be3;"></i></span>
-            </div>
-            <h2 class="title">Hydration Tracker</h2>
-            <p>You have consumed {{waterConsumption}} liters of water today.</p>
-            <form action="/api/hydration" class="my-2" id="create-hydration">
-                <div class="input-group">
-                    <label for="waterAmount" class="block mb-1">Total Water:</label>
-                    <input type="number" id="totalDailyWater" name="totalDailyWater" min="0" step="1"
-                        class="block w-full p-1 mb-2 border rounded">
-                    <button type="submit"
-                        class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
-                </div>
-                <div class="input-group">
-                    <label for="waterAmount" class="block mb-1">Target Water:</label>
-                    <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1"
-                        class="block w-full p-1 mb-2 border rounded">
-                    <button type="submit"
-                        class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+                    <div class="card hydration-tracker" onclick="toggleCardContent(this)">
+                        <div class="card-content">
+                            <div class="icon-wrapper">
+                                <span class="icon"><i class="fas fa-tint fa-lg" style="color: #336be3;"></i></span>
+                            </div>
+                            <h2 class="title">Hydration Tracker</h2>
+                            <p>You have consumed <span id="totalWater">0</span> liters of water today.</p>
+                            <form action="/api/hydration" class="my-2" id="create-hydration">
+                                <div class="input-group">
+                                    <label for="totalDailyWater" style="display:block; margin-bottom:5px;">Total Water
+                                        Consumed</label>
+                                    <input type="number" id="totalDailyWater" name="totalDailyWater" min="0"
+                                        class="block w-full p-1 mb-2 border rounded">
+                                    {{!-- <button type="submit" --}} {{!--
+                                        class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                                    --}}
+                                </div>
 
-                {{!-- user hydration equation for target hydration from user input data --}}
-      
+                                <div style="display:flex; justify-content:space-between;">
+                                    <button onclick="saveWater()"
+                                        style="width:48%; background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer;">Save</button>
+                                    <button onclick="cancelWater()"
+                                        style="width:48%; background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer;">Cancel</button>
+                                </div>
+                                {{!-- <div class="input-group">
+                                    <label for="waterAmount" class="block mb-1">Target Water:</label>
+                                    <input type="number" id="targetDailyWater" name="targetDailyWater" min="0" step="1"
+                                        class="block w-full p-1 mb-2 border rounded">
+                                    <button type="submit"
+                                        class="block w-full p-1 border rounded bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+                                </div> --}}
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
             <div class="columns is-multiline">
                 <!-- Fitness Tracker Card -->
                 <div class="column">
-    <div class="card fitness-tracker">
-        <div class="card-content">
-            <div class="icon-wrapper">
-                <span class="icon"><i class="fas fa-running fa-lg" style="color: #4CAF50;"></i></span>
-            </div>
-            <h2 class="title">Fitness Tracker</h2>
-            <div id="workouts-list">
-                <!-- Workouts will be appended here -->
-            </div>
-            <div class="input-group">
-                <label for="workout" class="block mb-1">Log Workout:</label>
-                <input type="text" id="workout" name="workout" class="block w-full p-1 mb-2 border rounded" placeholder="Workout">
-                <input type="number" id="sets" name="sets" class="block w-full p-1 mb-2 border rounded" placeholder="Sets">
-                <input type="number" id="reps" name="reps" class="block w-full p-1 mb-2 border rounded" placeholder="Reps">
-                <label for="difficulty" class="block mb-1">Difficulty:</label>
-                <div class="difficulty-buttons">
-                    <button style="background-color: lightgreen;" onmouseover="this.style.backgroundColor='green'" onmouseout="this.style.backgroundColor='lightgreen'" onclick="addWorkout('Easy')">Easy</button>
-                    <button style="background-color: #FFD700;" onmouseover="this.style.backgroundColor='#DAA520'" onmouseout="this.style.backgroundColor='#FFD700'" onclick="addWorkout('Medium')">Medium</button>
-                    <button style="background-color: orange;" onmouseover="this.style.backgroundColor='darkorange'" onmouseout="this.style.backgroundColor='orange'" onclick="addWorkout('Hard')">Hard</button>
-                    <button style="background-color: red;" onmouseover="this.style.backgroundColor='darkred'" onmouseout="this.style.backgroundColor='red'" onclick="addWorkout('Very Hard')">Very Hard</button>
+                    <div class="card fitness-tracker">
+                        <div class="card-content">
+                            <div class="icon-wrapper">
+                                <span class="icon"><i class="fas fa-running fa-lg" style="color: #4CAF50;"></i></span>
+                            </div>
+                            <h2 class="title">Fitness Tracker</h2>
+                            <div id="workouts-list">
+                                <!-- Workouts will be appended here -->
+                            </div>
+                            <div class="input-group">
+                                <label for="workout" class="block mb-1">Log Workout:</label>
+                                <input type="text" id="workout" name="workout"
+                                    class="block w-full p-1 mb-2 border rounded" placeholder="Workout">
+                                <input type="number" id="sets" name="sets" class="block w-full p-1 mb-2 border rounded"
+                                    placeholder="Sets">
+                                <input type="number" id="reps" name="reps" class="block w-full p-1 mb-2 border rounded"
+                                    placeholder="Reps">
+                                <label for="difficulty" class="block mb-1">Difficulty:</label>
+                                <div class="difficulty-buttons">
+                                    <button style="background-color: lightgreen;"
+                                        onmouseover="this.style.backgroundColor='green'"
+                                        onmouseout="this.style.backgroundColor='lightgreen'"
+                                        onclick="addWorkout('Easy')">Easy</button>
+                                    <button style="background-color: #FFD700;"
+                                        onmouseover="this.style.backgroundColor='#DAA520'"
+                                        onmouseout="this.style.backgroundColor='#FFD700'"
+                                        onclick="addWorkout('Medium')">Medium</button>
+                                    <button style="background-color: orange;"
+                                        onmouseover="this.style.backgroundColor='darkorange'"
+                                        onmouseout="this.style.backgroundColor='orange'"
+                                        onclick="addWorkout('Hard')">Hard</button>
+                                    <button style="background-color: red;"
+                                        onmouseover="this.style.backgroundColor='darkred'"
+                                        onmouseout="this.style.backgroundColor='red'"
+                                        onclick="addWorkout('Very Hard')">Very Hard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+                <script>
+                    // Function to calculate BMR
+                    function calculateBMR(gender, weight, height, age) {
+                        const bmr = gender === 'male' ?
+                            10 * weight + 6.25 * height - 5 * age + 5 :
+                            10 * weight + 6.25 * height - 5 * age - 161;
+
+                        return bmr;
+                    }
+
+                    function updateTargetCalories(difficulty) {
+                        const gender = document.getElementById('gender').textContent.toLowerCase();
+                        const weight = parseFloat(document.getElementById('weight').textContent);
+                        const height = parseFloat(document.getElementById('height').textContent);
+                        const age = parseFloat(document.getElementById('age').textContent);
+
+                        const bmr = calculateBMR(gender, weight, height, age);;
+
+                        let targetCalories;
+
+                        switch (difficulty) {
+                            case 'Easy':
+                                targetCalories = bmr * 1.2;
+                                break;
+                            case 'Medium':
+                                targetCalories = bmr * 1.5;
+                                break;
+                            case 'Hard':
+                                targetCalories = bmr * 1.7;
+                                break;
+                            case 'Very Hard':
+                                targetCalories = bmr * 2.0;
+                                break;
+                            default:
+                                targetCalories = 0;
+                                break;
+                        }
+                        document.getElementById('calorieValue').value = targetCalories.toFixed(2);
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const difficultyButtons = document.querySelectorAll('.difficulty-buttons button');
+
+                        difficultyButtons.forEach(function (button) {
+                            button.addEventListener('click', function () {
+                                const difficulty = button.textContent;
+                                updateTargetCalories(difficulty);
+                            });
+                        });
+                    });
+                </script>
 
                 <!-- Sleep Log Card -->
-<div class="column">
-    <div class="card sleep-log" style="padding:15px; box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);">
-        <div class="card-content">
-            <div class="icon-wrapper" style="text-align:center;">
-                <span class="icon"><i class="fas fa-bed fa-lg" style="color: #3F51B5;"></i></span>
-            </div>
-            <h2 class="title" style="text-align:center;">Sleep Log</h2>
-            <p id="sleepInfo" style="text-align:center; font-size:16px;">You slept for {{totalSleep}} hours last night.</p>
-            <!-- Permanent Content -->
-            <div class="input-wrapper" style="padding:10px;">
-                <div style="margin-bottom:10px;">
-                    <label for="sleepHours" style="display:block; margin-bottom:5px;">Hours of Sleep:</label>
-                    <input type="number" id="sleepHours" name="sleepHours" min="0" style="width:60px; padding:5px;">
-                </div>
+                <div class="column">
+                    <div class="card sleep-log" style="padding:15px; box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);">
+                        <div class="card-content">
+                            <div class="icon-wrapper" style="text-align:center;">
+                                <span class="icon"><i class="fas fa-bed fa-lg" style="color: #3F51B5;"></i></span>
+                            </div>
+                            <h2 class="title" style="text-align:center;">Sleep Log</h2>
+                            <p id="sleepInfo" style="text-align:center; font-size:16px;">You slept for {{totalSleep}}
+                                hours last night.</p>
+                            <!-- Permanent Content -->
+                            <div class="input-wrapper" style="padding:10px;">
+                                <div style="margin-bottom:10px;">
+                                    <label for="sleepHours" style="display:block; margin-bottom:5px;">Hours of
+                                        Sleep:</label>
+                                    <input type="number" id="sleepHours" name="sleepHours" min="0"
+                                        style="width:60px; padding:5px;">
+                                </div>
 
-                <div style="margin-bottom:20px;">
-                    <label for="sleepQuality" style="display:block; margin-bottom:5px;">How well did you sleep?</label>
-                    <select id="sleepQuality" name="sleepQuality" style="width:100%; padding:5px;">
-                        <option value="great">Slept Great</option>
-                        <option value="okay">It was okay</option>
-                        <option value="bad">Did not sleep well</option>
-                    </select>
-                </div>
+                                <div style="margin-bottom:20px;">
+                                    <label for="sleepQuality" style="display:block; margin-bottom:5px;">How well did you
+                                        sleep?</label>
+                                    <select id="sleepQuality" name="sleepQuality" style="width:100%; padding:5px;">
+                                        <option value="great">Slept Great</option>
+                                        <option value="okay">It was okay</option>
+                                        <option value="bad">Did not sleep well</option>
+                                    </select>
+                                </div>
 
-                <div style="display:flex; justify-content:space-between;">
-                    <button onclick="saveSleepLog()" style="width:48%; background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer;">Save</button>
-                    <button onclick="cancelSleepLog()" style="width:48%; background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer;">Cancel</button>
+                                <div style="display:flex; justify-content:space-between;">
+                                    <button onclick="saveSleepLog()"
+                                        style="width:48%; background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer;">Save</button>
+                                    <button onclick="cancelSleepLog()"
+                                        style="width:48%; background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer;">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
                 <!-- Calorie Intake Card -->
                 <div class="column">
@@ -172,9 +253,25 @@
                                 <span class="icon"><i class="fas fa-apple-alt fa-lg" style="color: #FFC107;"></i></span>
                             </div>
                             <h2 class="title">Calorie Intake</h2>
-                            <p>You have consumed {{calorieIntake}}/2500 calories today.</p>
+                            <p>You have consumed <span id="calorieAmount">0</span> calories today.</p>
                             <label for="calorieAmount" class="block mb-1">Target calorie intake:</label>
+                            <div id="targetCalories"> <span id="calorieValue"></span></div>
+                            <div class="input-wrapper" style="padding:10px;">
 
+                                <div style="margin-bottom:10px;">
+                                    <label for="calorieIntake" style="display:block; margin-bottom:5px;">Daily Calories
+                                        Consumed</label>
+                                    <input type="number" id="calorieIntake" name="calorieIntake" min="0"
+                                        style="width:60px; padding:5px;">
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between;">
+                                    <button onclick="saveCalories()"
+                                        style="width:48%; background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer;">Save</button>
+                                    <button onclick="cancelCalories()"
+                                        style="width:48%; background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer;">Cancel</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -314,106 +411,133 @@
         }
     </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const quotes = [
-            "Your limitation—it's only your imagination.",
-            "Push yourself, because no one else is going to do it for you.",
-            "Sometimes later becomes never. Do it now.",
-            "Great things never come from comfort zones.",
-            "Dream it. Wish it. Do it.",
-            "Success doesn't just find you. You have to go out and get it.",
-            "The harder you work for something, the greater you'll feel when you achieve it.",
-            "Dream bigger. Do bigger.",
-            "Don't stop when you're tired. Stop when you're done.",
-            "Wake up with determination. Go to bed with satisfaction.",
-        ];
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const quotes = [
+                "Your limitation—it's only your imagination.",
+                "Push yourself, because no one else is going to do it for you.",
+                "Sometimes later becomes never. Do it now.",
+                "Great things never come from comfort zones.",
+                "Dream it. Wish it. Do it.",
+                "Success doesn't just find you. You have to go out and get it.",
+                "The harder you work for something, the greater you'll feel when you achieve it.",
+                "Dream bigger. Do bigger.",
+                "Don't stop when you're tired. Stop when you're done.",
+                "Wake up with determination. Go to bed with satisfaction.",
+            ];
 
-        let startDate = Date.UTC(2023, 8, 21);
-        let currentDate = new Date();
+            let startDate = Date.UTC(2023, 8, 21);
+            let currentDate = new Date();
 
-        let differenceInTime = currentDate.getTime() - startDate;
-        let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+            let differenceInTime = currentDate.getTime() - startDate;
+            let differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
 
-        if (differenceInDays < 0) {
-            console.error("Start date is in the future");
-            return;
+            if (differenceInDays < 0) {
+                console.error("Start date is in the future");
+                return;
+            }
+
+            let index = differenceInDays % quotes.length;
+            document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
+
+            let displayDate = currentDate.toLocaleDateString();
+            document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
+
+            window.workouts = [];
+        });
+
+        window.addWorkout = function (difficulty) {
+            let workoutElement = document.getElementById('workout');
+            let setsElement = document.getElementById('sets');
+            let repsElement = document.getElementById('reps');
+
+            let workout = workoutElement.value.trim();
+            let sets = setsElement.value.trim();
+            let reps = repsElement.value.trim();
+
+            if (workout === "" || sets === "" || reps === "") {
+                return alert('Please fill out all fields');
+            }
+
+            const workoutsList = document.getElementById('workouts-list');
+
+            let workoutItem = document.createElement('div');
+            workoutItem.className = 'workout-item';
+            let difficultyColor = getDifficultyColor(difficulty);
+            workoutItem.innerHTML = `<p><strong>${workout}:</strong> ${sets} sets of ${reps} reps <span style="background-color: ${difficultyColor};">${difficulty}</span></p>`;
+            workoutsList.appendChild(workoutItem);
+
+            workoutElement.value = '';
+            setsElement.value = '';
+            repsElement.value = '';
         }
 
-        let index = differenceInDays % quotes.length;
-        document.querySelector('.magical-inspiration h4').innerText = `"${quotes[index]}"`;
+        function getDifficultyColor(difficulty) {
+            switch (difficulty) {
+                case 'Easy':
+                    return 'lightgreen';
+                case 'Medium':
+                    return '#FFD700';
+                case 'Hard':
+                    return 'orange';
+                case 'Very Hard':
+                    return 'red';
+                default:
+                    return 'white';
+            }
+        }
+        function saveSleepLog() {
+            var hours = document.getElementById('sleepHours').value;
+            var quality = document.getElementById('sleepQuality').value;
 
-        let displayDate = currentDate.toLocaleDateString();
-        document.querySelector('.magical-inspiration p small').textContent = `Date: ${displayDate}`;
-        
-        window.workouts = [];
-    });
+            if (hours === "" || quality === "") {
+                // You can replace this alert with a more user-friendly message on the screen if you want.
+                alert("Please enter all details.");
+                return;
+            }
 
-    window.addWorkout = function(difficulty) {
-        let workoutElement = document.getElementById('workout');
-        let setsElement = document.getElementById('sets');
-        let repsElement = document.getElementById('reps');
+            // Update the sleepInfo paragraph
+            var qualityText = (quality === 'great') ? 'Slept Great' : (quality === 'okay') ? 'It was okay' : 'Did not sleep well';
+            document.getElementById('sleepInfo').innerHTML = "<strong>You slept for " + hours + " hours last night. Quality: " + qualityText + "</strong>";
 
-        let workout = workoutElement.value.trim();
-        let sets = setsElement.value.trim();
-        let reps = repsElement.value.trim();
-
-        if (workout === "" || sets === "" || reps === "") {
-            return alert('Please fill out all fields');
+            // Optionally: Save the sleep log e.g., send to server, or store in local storage.
         }
 
-        const workoutsList = document.getElementById('workouts-list');
-
-        let workoutItem = document.createElement('div');
-        workoutItem.className = 'workout-item';
-        let difficultyColor = getDifficultyColor(difficulty);
-        workoutItem.innerHTML = `<p><strong>${workout}:</strong> ${sets} sets of ${reps} reps <span style="background-color: ${difficultyColor};">${difficulty}</span></p>`;
-        workoutsList.appendChild(workoutItem);
-
-        workoutElement.value = '';
-        setsElement.value = '';
-        repsElement.value = '';
-    }
-
-    function getDifficultyColor(difficulty) {
-        switch (difficulty) {
-            case 'Easy':
-                return 'lightgreen';
-            case 'Medium':
-                return '#FFD700';
-            case 'Hard':
-                return 'orange';
-            case 'Very Hard':
-                return 'red';
-            default:
-                return 'white';
+        function cancelSleepLog() {
+            // Clear the input
+            document.getElementById('sleepHours').value = "";
         }
-    }
-function saveSleepLog() {
-    var hours = document.getElementById('sleepHours').value;
-    var quality = document.getElementById('sleepQuality').value;
+        function saveCalories() {
+            var calories = document.getElementById('calorieIntake').value;
 
-    if (hours === "" || quality === "") {
-        // You can replace this alert with a more user-friendly message on the screen if you want.
-        alert("Please enter all details.");
-        return;
-    }
+            if (calories === "") {
+                alert("Please enter all details.");
+                return;
+            }
+            document.getElementById('calorieAmount').textContent = calories;
 
-    // Update the sleepInfo paragraph
-    var qualityText = (quality === 'great') ? 'Slept Great' : (quality === 'okay') ? 'It was okay' : 'Did not sleep well';
-    document.getElementById('sleepInfo').innerHTML = "<strong>You slept for " + hours + " hours last night. Quality: " + qualityText + "</strong>";
+        }
+        function cancelCalories() {
+            // Clear the input
+            document.getElementById('calorieIntake').value = "";
+        }
+        function saveWater() {
+            var water = document.getElementById('totalDailyWater').value;
 
-    // Optionally: Save the sleep log e.g., send to server, or store in local storage.
-}
+            if (water === "") {
+                alert("Please enter all details.");
+                return;
+            }
 
-function cancelSleepLog() {
-    // Clear the input
-    document.getElementById('sleepHours').value = "";
-    document.getElementById('sleepQuality').value = "great";
-}
-
-</script>
+            // Update the content of the span element
+            document.getElementById('totalWater').textContent = water;
+        }
+        function cancelWater() {
+            // Clear the input
+            document.getElementById('totalDailyWater').value = "";
+        }
+    </script>
 
     <script src="/js/homepage.js"></script>
 </body>
