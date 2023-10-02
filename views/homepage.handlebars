@@ -300,12 +300,10 @@
             font-size: 20px;
             cursor: pointer;
             display: none;
-            /* Initially hidden */
         }
 
         .card.active .close-btn {
             display: block;
-            /* Display when card is active */
         }
 
 
@@ -492,20 +490,16 @@
             var quality = document.getElementById('sleepQuality').value;
 
             if (hours === "" || quality === "") {
-                // You can replace this alert with a more user-friendly message on the screen if you want.
                 alert("Please enter all details.");
                 return;
             }
 
-            // Update the sleepInfo paragraph
             var qualityText = (quality === 'great') ? 'Slept Great' : (quality === 'okay') ? 'It was okay' : 'Did not sleep well';
             document.getElementById('sleepInfo').innerHTML = "<strong>You slept for " + hours + " hours last night. Quality: " + qualityText + "</strong>";
 
-            // Optionally: Save the sleep log e.g., send to server, or store in local storage.
         }
 
         function cancelSleepLog() {
-            // Clear the input
             document.getElementById('sleepHours').value = "";
         }
         function saveCalories() {
@@ -519,7 +513,6 @@
 
         }
         function cancelCalories() {
-            // Clear the input
             document.getElementById('calorieIntake').value = "";
         }
         function saveWater() {
@@ -530,11 +523,9 @@
                 return;
             }
 
-            // Update the content of the span element
             document.getElementById('totalWater').textContent = water;
         }
         function cancelWater() {
-            // Clear the input
             document.getElementById('totalDailyWater').value = "";
         }
     </script>

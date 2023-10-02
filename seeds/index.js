@@ -2,10 +2,10 @@ const sequelize = require('../config/connection');
 const { Hydration, Calorie, Workout, Sleep, User } = require('../models'); 
 
 const userData =require('./User-seeds.json');
-const workoutData = require('./workout-seeds.json');
-const sleepData = require('./sleep-seeds.json');
-const calorieData = require('./calorie-seeds.json');
-const hydrationData = require('./hydration-seeds.json');
+const workoutData = require('./Workout-seeds.json');
+const sleepData = require('./Sleep-seeds.json');
+const calorieData = require('./Calorie-seeds.json');
+const hydrationData = require('./Hydration-seeds.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
