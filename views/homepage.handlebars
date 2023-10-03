@@ -165,10 +165,11 @@
 
                     function updateTargetCalories(difficulty) {
                         const gender = document.getElementById('gender').textContent.toLowerCase();
-                        const weight = parseFloat(document.getElementById('weight').textContent);
-                        const height = parseFloat(document.getElementById('height').textContent);
-                        const age = parseFloat(document.getElementById('age').textContent);
-
+                        const weight = parseFloat(document.getElementById('weight').value);
+                        const height = parseFloat(document.getElementById('height').value);
+                        const age = parseFloat(document.getElementById('age').value);
+                            console.log(weight, height, age)
+                            
                         const bmr = calculateBMR(gender, weight, height, age);;
 
                         let targetCalories;
@@ -190,7 +191,7 @@
                                 targetCalories = 0;
                                 break;
                         }
-                        document.getElementById('calorieValue').value = targetCalories.toFixed(2);
+                        document.getElementById('calorieValue').textContent = targetCalories.toFixed(2);
                     }
 
                     document.addEventListener('DOMContentLoaded', function () {
