@@ -8,21 +8,21 @@ Heroku Deployed URL: https://wellness-wizard-c98198b06502.herokuapp.com/
 Wellness Tracker is a web application that helps users track various aspects of their wellness, including sleep quality, hydration, calorie intake, and workouts. It provides users with the ability to record and monitor their wellness data over time, helping them make informed decisions to improve their overall health and well-being.
 
 ## Technologies
--Node.js
--Express.js
--Sequelize (with MySQL)
--Handlebars.js
--HTML/CSS
--JavaScript
+- Node.js
+- Express.js
+- Sequelize (with MySQL)
+- Handlebars.js
+- HTML/CSS
+- JavaScript
 
 ## Features
-**User Authentication:** Users can sign up and log in to the application, ensuring their wellness data is secure and personalized.
-**Sleep Tracking:** Users can record their sleep quality and add notes about their sleep patterns.
-**Hydration Tracking:** Users can log their daily water intake and set target goals for hydration.
-**Calorie Tracking:** Users can track their daily calorie intake and monitor their nutritional habits.
-**Workout Tracking:** Users can record details of their workouts, including exercise type, duration, and intensity.
-**Dashboard:** Users have access to a personalized dashboard that displays an overview of their wellness data.
-**Responsive Design:** The application is designed to work seamlessly on various devices, including desktop and mobile.
+- **User Authentication:** Users can sign up and log in to the application, ensuring their wellness data is secure and personalized.
+- **Sleep Tracking:** Users can record their sleep quality and add notes about their sleep patterns.
+- **Hydration Tracking:** Users can log their daily water intake and set target goals for hydration.
+- **Calorie Tracking:** Users can track their daily calorie intake and monitor their nutritional habits.
+- **Workout Tracking:** Users can record details of their workouts, including exercise type, duration, and intensity.
+- **Dashboard:** Users have access to a personalized dashboard that displays an overview of their wellness data.
+- **Responsive Design:** The application is designed to work seamlessly on various devices, including desktop and mobile.
 
 ## Usage
 - Visit the application's homepage and sign up for a new account if you don't have one.
