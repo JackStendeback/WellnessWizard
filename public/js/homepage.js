@@ -1,4 +1,4 @@
-const createHydration = async function(event) {
+const createHydration = async function (event) {
     event.preventDefault();
     const totalDailyWater = document.querySelector('input[name="totalDailyWater"]').value;
     const targetDailyWater = document.querySelector('input[name="targetDailyWater"]').value;;
